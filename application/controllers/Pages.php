@@ -2,6 +2,12 @@
     class Pages extends CI_Controller{
 
         public function admin(){
+
+            // Check login
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            
             $data['title'] = 'Administrador';
             
             $this->load->view('templates/header');

@@ -26,7 +26,7 @@
         <?php endif; ?>
           <?php if($this->session->userdata('logged_in')) : ?>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url();?>users/logout">Logout</a>
+            <a class="nav-link" href="<?php echo base_url();?>users/logout">Sair</a>
           </li>
         <?php endif; ?>
       </ul>
