@@ -5,11 +5,11 @@
             $data['title'] = 'Cadastro';
 
             $this->form_validation->set_rules('nome','Nome', 'required');
-            $this->form_validation->set_rules('nome_empresa','Nome da empresa', 'required|callback_check_username_exists');
+            $this->form_validation->set_rules('nome_empresa','Nome da empresa', 'required');
             $this->form_validation->set_rules('telefone','Telefone', 'required|callback_check_telefone_exists');
             $this->form_validation->set_rules('email','Email', 'required|callback_check_email_exists');
             $this->form_validation->set_rules('senha','Senha', 'required');
-            $this->form_validation->set_rules('senha2','Confirmar Password', 'matches[senha]');
+            $this->form_validation->set_rules('senha2','Confirmar Senha', 'matches[senha]');
 
             if($this ->form_validation->run() === FALSE){
                 $this->load->view('templates/header');
@@ -20,8 +20,7 @@
                 $enc_senha = md5($this->input->post('senha'));
                 $this->user_model->cadastrar($enc_senha);
                 // Set message
-                $this->session->set_flashdata('user_registered', 'You are now registered.');
-
+                
                 redirect('login');
             }
         }
