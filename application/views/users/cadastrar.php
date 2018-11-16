@@ -11,7 +11,7 @@
 
             <div class="form-group">
                 <label>Nome da Empresa</label>
-                <input type="text" class="form-control" name="nome_empresa" placeholder="Nome da Empresa">
+                <input type="text" class="form-control" name="nome_empresa" placeholder="Empresa">
             </div>
 
             <div class="form-group">

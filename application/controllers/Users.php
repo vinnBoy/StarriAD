@@ -22,7 +22,7 @@
                 // Set message
                 $this->session->set_flashdata('user_registered', 'You are now registered.');
 
-                redirect('posts');
+                redirect('login');
             }
         }
         // Login user
@@ -54,7 +54,7 @@
                     );
 
                     $this->session->set_userdata($user_data);
-                    redirect('posts');
+                    redirect('pages/admin');
                 }else{
                     // Set message
                     $this->session->set_flashdata('login_failed', 'Login inválido.');
