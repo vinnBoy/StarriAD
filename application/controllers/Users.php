@@ -21,7 +21,7 @@
                 $this->user_model->cadastrar($enc_senha);
                 // Set message
                 
-                redirect('login');
+                redirect('users/login');
             }
         }
         // Login user
