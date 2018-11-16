@@ -31,7 +31,7 @@
             $this->form_validation->set_rules('telefone','Telefone', 'required');
             $this->form_validation->set_rules('senha','Senha', 'required');
             
-            if($this ->form_validation->run() === FALSE){
+            if($this->form_validation->run() === FALSE){
                 $this->load->view('templates/header');
                 $this->load->view('users/login', $data);
                 $this->load->view('templates/footer');
