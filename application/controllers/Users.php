@@ -20,6 +20,7 @@
                 $enc_senha = md5($this->input->post('senha'));
                 $this->user_model->cadastrar($enc_senha);
                 // Set message
+                $this->session->set_flashdata('user_registered', 'Cadastro realizado com sucesso. Por favor, faça o login.');
                 
                 redirect('users/login');
             }
