@@ -34,7 +34,7 @@
                 else
                     {
 
-                    if (file_exists("upload/" . $_FILES["file"]["name"]))
+                    if (file_exists("uploads/" . $_FILES["file"]["name"]))
                     {
                     $this->session->set_flashdata('file_exists','Arquivo ' . $_FILES["file"]["name"]
                     . ' já existe. Por favor envie outro video.');
@@ -43,7 +43,7 @@
                     else
                     {
                     move_uploaded_file($_FILES["file"]["tmp_name"],
-                    "upload/" . $_FILES["file"]["name"]);
+                    "uploads/" . $_FILES["file"]["name"]);
                     $this->session->set_flashdata('upload_success','Arquivo enviado com sucesso.');
                     redirect('pages/admin');
                     }
