@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 16-Nov-2018 às 02:31
+-- Generation Time: 18-Nov-2018 às 20:51
 -- Versão do servidor: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -33,8 +33,30 @@ CREATE TABLE `users` (
   `nome` varchar(255) NOT NULL,
   `nome_empresa` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `telefone` varchar(10) NOT NULL,
+  `telefone` varchar(15) NOT NULL,
   `senha` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `users`
+--
+
+INSERT INTO `users` (`id`, `nome`, `nome_empresa`, `email`, `telefone`, `senha`) VALUES
+(1, 'User1', 'EmpresaNome1', 'nome@empresa.com', '1188884444', '81dc9bdb52d04dc20036dbd8313ed055'),
+(2, 'User2', 'EmpresaNome2', 'nome2@empresa.com', '1188884445', '827ccb0eea8a706c4c34a16891f84e7b');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `videos`
+--
+
+CREATE TABLE `videos` (
+  `id` int(10) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `descricao` varchar(255) NOT NULL,
+  `nome_arquivo` varchar(255) NOT NULL,
+  `telefone` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -48,6 +70,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `videos`
+--
+ALTER TABLE `videos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -55,7 +83,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `videos`
+--
+ALTER TABLE `videos`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

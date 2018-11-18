@@ -20,4 +20,12 @@
             return $query->result_array();
         }
 
+        public function delete_video($id){
+            
+            $this->db->where('id',$id);
+            $this->db->delete('videos');
+            return true;  
+
+        }
+
     }

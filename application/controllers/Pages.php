@@ -19,8 +19,6 @@
         }
         // Upload video
         public function upload(){ 
-            include_once('assets/getID3/getid3/getid3.php'); 
-            $getID3 = new getID3;
             
             $allowedExts = array("mp4", "MP4", "3gp", "3GP");
             $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
@@ -60,12 +58,8 @@
                         move_uploaded_file($_FILES["file"]["tmp_name"],"uploads/" . $_FILES["file"]["name"]);
                         $file_name = $_FILES["file"]["name"];
                         $this->upload_model->create_info($file_name);
-
-                        $file_analyze = $getID3->analyze($_FILES["file"]["name"]);
-                        $file_duration = $file_analyze['playtime_seconds'];
                         
-                                               
-                        $this->session->set_flashdata('upload_success','Arquivo enviado com sucesso. '. ' Duração: '. $file_duration);
+                        $this->session->set_flashdata('upload_success','Arquivo enviado com sucesso. ');
                         redirect('pages/admin');
                         
                     }  
@@ -80,5 +74,22 @@
                 }
            
         }
+        public function delete($id){
+            // Check login
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            $nome_arquivo = $this->input->post('nome_arquivo');
+           
+            $this->upload_model->delete_video($id);
+            // Apaga arquivo do servidor
+            unlink('uploads/'.$nome_arquivo);
+            
+            redirect('pages/admin');
+            
+
+        }
+
+        
     }
     
