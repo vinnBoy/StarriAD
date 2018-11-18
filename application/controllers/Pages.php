@@ -42,10 +42,23 @@
                     }
                     else
                     {
-                    move_uploaded_file($_FILES["file"]["tmp_name"],
-                    "uploads/" . $_FILES["file"]["name"]);
-                    $this->session->set_flashdata('upload_success','Arquivo enviado com sucesso.');
-                    redirect('pages/admin');
+                    
+                    // Inserir dados em BD
+                    $this->form_validation->set_rules('titulo','Título','required');
+                    $this->form_validation->set_rules('descricao','Descrição','required');
+                    
+                    if($this->form_validation->run() === FALSE){
+                        redirect('pages/admin');
+                    } else {
+                        move_uploaded_file($_FILES["file"]["tmp_name"],"uploads/" . $_FILES["file"]["name"]);
+                        $file_name = $_FILES["file"]["name"];
+                        $this->upload_model->create_info($file_name);
+
+                        $this->session->set_flashdata('upload_success','Arquivo enviado com sucesso.');
+                        redirect('pages/admin');
+                        
+                    }  
+                    
                     }
                     }
                 }
