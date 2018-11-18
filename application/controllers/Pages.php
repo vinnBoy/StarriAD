@@ -9,18 +9,26 @@
             }
             
             $data['title'] = 'Administrador';
+            $data['videos'] = $this->upload_model->get_videos();
             
             $this->load->view('templates/header');
             $this->load->view('pages/admin',$data);
             $this->load->view('templates/footer');
+
+           
         }
         // Upload video
-        public function upload(){     
-            $allowedExts = array("mp4", "MP4");
+        public function upload(){ 
+            include_once('assets/getID3/getid3/getid3.php'); 
+            $getID3 = new getID3;
+            
+            $allowedExts = array("mp4", "MP4", "3gp", "3GP");
             $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
             if ((($_FILES["file"]["type"] == "video/mp4")
-            || ($_FILES["file"]["type"] == "video/MP4"))
+            || ($_FILES["file"]["type"] == "video/MP4")
+            || ($_FILES["file"]["type"] == "video/3gp")
+            || ($_FILES["file"]["type"] == "video/3GP"))
            
             && ($_FILES["file"]["size"] < 1000000)
             && in_array($extension, $allowedExts))
@@ -37,7 +45,7 @@
                     if (file_exists("uploads/" . $_FILES["file"]["name"]))
                     {
                     $this->session->set_flashdata('file_exists','Arquivo ' . $_FILES["file"]["name"]
-                    . ' já existe. Por favor envie outro video.');
+                    . ' já existe. Por favor envie outro vídeo.');
                     redirect('pages/admin');
                     }
                     else
@@ -45,7 +53,6 @@
                     
                     // Inserir dados em BD
                     $this->form_validation->set_rules('titulo','Título','required');
-                    $this->form_validation->set_rules('descricao','Descrição','required');
                     
                     if($this->form_validation->run() === FALSE){
                         redirect('pages/admin');
@@ -54,7 +61,11 @@
                         $file_name = $_FILES["file"]["name"];
                         $this->upload_model->create_info($file_name);
 
-                        $this->session->set_flashdata('upload_success','Arquivo enviado com sucesso.');
+                        $file_analyze = $getID3->analyze($_FILES["file"]["name"]);
+                        $file_duration = $file_analyze['playtime_seconds'];
+                        
+                                               
+                        $this->session->set_flashdata('upload_success','Arquivo enviado com sucesso. '. ' Duração: '. $file_duration);
                         redirect('pages/admin');
                         
                     }  
