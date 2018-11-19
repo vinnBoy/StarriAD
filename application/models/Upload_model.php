@@ -28,4 +28,12 @@
 
         }
 
+        // public function auto_delete($id){
+            
+        //     $this->db->where('id',$id);
+        //     $this->db->delete('videos');
+        //     return true;  
+
+        // }
+
     }

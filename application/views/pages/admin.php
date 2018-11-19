@@ -26,17 +26,20 @@
   <div class="row" style="padding-left:7%">  
 
     <?php foreach($videos as $video) : ?>
+
       <div class="col-md-4 padding-left-10" >
         <h4><?php echo $video['titulo']; ?></h4>
         <label ><?php echo $video['descricao']; ?></label>    
         <video width="auto" height="240" controls>
           <source src="<?php echo base_url() .'uploads/'.$video['nome_arquivo']; ?>" type="video/MP4">
         </video><br><br>
+        
         <?php echo form_open('pages/delete/'.$video['id']); ?>
           <input type="submit" value="remover" class="btn btn-danger btn-sm">
           <input type="hidden" name="nome_arquivo" value="<?php echo $video['nome_arquivo']; ?>">
         </form> <br><br> 
       </div>
+
     <?php endforeach; ?>
 
     </div>    
