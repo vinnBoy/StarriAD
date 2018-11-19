@@ -82,5 +82,8 @@
   <?php if($this->session->flashdata('upload_error')) : ?>
     <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('upload_error').'</p>'; ?>
   <?php endif; ?>
+  <?php if($this->session->flashdata('long_file')) : ?>
+    <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('long_file').'</p>'; ?>
+  <?php endif; ?>
   
 

@@ -28,12 +28,12 @@
 
         }
 
-        // public function auto_delete($id){
-            
-        //     $this->db->where('id',$id);
-        //     $this->db->delete('videos');
-        //     return true;  
+        public function auto_delete($email){
+            $this->db->order_by('email','DESC');
+            $this->db->where('email',$email);
+            $this->db->delete('videos');
+            return true;  
 
-        // }
+        }
 
     }
