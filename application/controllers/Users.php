@@ -54,7 +54,7 @@
                     );
 
                     $this->session->set_userdata($user_data);
-                    redirect('pages/admin');
+                    redirect('pages/home');
                 }else{
                     // Set message
                     $this->session->set_flashdata('login_failed', 'Login inválido.');
