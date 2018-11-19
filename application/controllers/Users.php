@@ -29,7 +29,7 @@
         public function login(){
             $data['title'] = 'Login';
 
-            $this->form_validation->set_rules('telefone','Telefone', 'required');
+            $this->form_validation->set_rules('email','email', 'required');
             $this->form_validation->set_rules('senha','Senha', 'required');
             
             if($this->form_validation->run() === FALSE){
@@ -37,19 +37,19 @@
                 $this->load->view('users/login', $data);
                 $this->load->view('templates/footer');
             }else {
-                // Get username
-                $telefone = $this->input->post('telefone');
+                // Get email
+                $email = $this->input->post('email');
                 // Get and encrypt password
                 $senha = md5($this->input->post('senha'));
 
                 // Login user
-                $user_id = $this->user_model->login($telefone, $senha);
+                $user_id = $this->user_model->login($email, $senha);
 
                 if($user_id){
                     // Create session
                     $user_data = array(
                         'user_id' => $user_id,
-                        'telefone' => $telefone,
+                        'email' => $email,
                         'logged_in' => true
                     );
 
@@ -68,7 +68,7 @@
         public function logout(){
             $this->session->unset_userdata('logged_in');
             $this->session->unset_userdata('user_id');
-            $this->session->unset_userdata('telefone');
+            $this->session->unset_userdata('email');
 
             redirect('users/login');
 
