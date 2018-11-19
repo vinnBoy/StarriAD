@@ -6,7 +6,7 @@
                 'titulo' => $this->input->post('titulo'),
                 'descricao' => $this->input->post('descricao'),
                 'nome_arquivo' => $file_name,
-                'telefone' => $this->session->userdata('telefone')
+                'email' => $this->session->userdata('email')
             );
 
             return $this->db->insert('videos',$data);
@@ -14,8 +14,8 @@
         }
 
         public function get_videos(){
-            $telefone = $this->session->userdata('telefone');
-            $this->db->where('telefone', $telefone);
+            $email = $this->session->userdata('email');
+            $this->db->where('email', $email);
             $query = $this->db->get('videos');
             return $query->result_array();
         }

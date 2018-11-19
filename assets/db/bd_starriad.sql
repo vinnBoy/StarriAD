@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18-Nov-2018 às 20:51
--- Versão do servidor: 10.1.31-MariaDB
--- PHP Version: 7.2.4
+-- Generation Time: 19-Nov-2018 às 19:58
+-- Versão do servidor: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -43,7 +41,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `nome`, `nome_empresa`, `email`, `telefone`, `senha`) VALUES
 (1, 'User1', 'EmpresaNome1', 'nome@empresa.com', '1188884444', '81dc9bdb52d04dc20036dbd8313ed055'),
-(2, 'User2', 'EmpresaNome2', 'nome2@empresa.com', '1188884445', '827ccb0eea8a706c4c34a16891f84e7b');
+(3, 'Admin', 'Admin', 'admin@admin.com', '0022334455', '21232f297a57a5a743894a0e4a801fc3');
 
 -- --------------------------------------------------------
 
@@ -56,7 +54,7 @@ CREATE TABLE `videos` (
   `titulo` varchar(255) NOT NULL,
   `descricao` varchar(255) NOT NULL,
   `nome_arquivo` varchar(255) NOT NULL,
-  `telefone` varchar(15) NOT NULL
+  `email` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -83,15 +81,12 @@ ALTER TABLE `videos`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `videos`
 --
 ALTER TABLE `videos`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-COMMIT;
-
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

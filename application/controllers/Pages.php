@@ -74,7 +74,7 @@
                         $this->session->set_flashdata('upload_success','Arquivo enviado com sucesso. ');
                         redirect('pages/admin');
                         
-                    }  
+                    }   
                     
                     }
                     }
