@@ -77,7 +77,7 @@
                         $duracao = (int)$playtime[1];
                         
 
-                        if($duracao > 15){
+                        if($duracao > 15){ 
                           
                            $this->session->set_flashdata('long_file','Por favor, envie arquivos menores que 15 segundos. Duração:' .$duracao.'s');
                             
