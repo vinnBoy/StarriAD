@@ -33,7 +33,7 @@
         <?php echo form_open('pages/delete/'.$video['id']); ?>
           <input type="submit" value="remover" class="btn btn-danger btn-sm">
           <input type="hidden" name="nome_arquivo" value="<?php echo $video['nome_arquivo']; ?>">
-        </form>  
+        </form> <br><br> 
       </div>
     <?php endforeach; ?>
     </div>    
