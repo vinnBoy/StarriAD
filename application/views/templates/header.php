@@ -3,10 +3,11 @@
         <title>StarriAD</title>
         <link rel ="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
         <link rel ="stylesheet" href="<?php echo base_url();?>/assets/css/style.css">
+        <link rel ="stylesheet" href="<?php echo base_url();?>/assets/css/sb-admin.css">
     </head>
     <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="<?php echo base_url();?>pages/admin">StarriAD</a>
+    <a class="navbar-brand" href="<?php echo base_url();?>pages/home">StarriAD</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -34,7 +35,32 @@
     </div>
   </nav>
 
-<div class="container">
+<div class="wrapper">
+
+<?php if($this->session->userdata('logged_in')) : ?>
+  <div id="wrapper">
+
+<!-- Sidebar -->
+<ul class="sidebar navbar-nav">
+  <li class="nav-item ">
+    <a class="nav-link" href="home">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>Home</span>
+    </a>
+  </li>
+  
+  <li class="nav-item">
+    <a class="nav-link" href="admin">
+      <i class="fas fa-fw fa-chart-area"></i>
+      <span>Criar Campanha</span></a>
+  </li>
+  
+</ul>
+
+<div id="content-wrapper">
+
+  <div class="container-fluid">
+<?php endif; ?>
 
 <!-- Flash messages -->
   

@@ -8,7 +8,7 @@
                 redirect('users/login');
             }
             
-            $data['title'] = 'Administrador';
+            $data['title'] = 'Criar Campanha';
             $data['videos'] = $this->upload_model->get_videos();
             
             $this->load->view('templates/header');
@@ -16,6 +16,18 @@
             $this->load->view('templates/footer');
 
            
+        }
+
+        public function home(){
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            $data['title'] = 'Home';
+
+            $this->load->view('templates/header');
+            $this->load->view('pages/home', $data);
+            $this->load->view('templates/footer');
+
         }
         // Upload video
         public function upload(){ 

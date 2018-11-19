@@ -19,9 +19,9 @@
         }
 
         // Log user in
-        public function login($telefone, $senha){
+        public function login($email, $senha){
         // Validate
-            $this->db->where('telefone', $telefone);
+            $this->db->where('email', $email);
             $this->db->where('senha', $senha);
 
             $result = $this->db->get('users');
