@@ -52,7 +52,7 @@
   <li class="nav-item">
     <a class="nav-link" href="admin">
       <i class="fas fa-fw fa-chart-area"></i>
-      <span>Enviar vídeos</span></a>
+      <span>Criar Campanha</span></a>
   </li>
   
 </ul>
