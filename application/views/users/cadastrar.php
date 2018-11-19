@@ -1,9 +1,9 @@
- <div class="row">   
-    <div class="col-md-4 offset-4">
+ <div class="row center-x pt-5">   
+    <div class="col-md-8 ">
         <h1 class="text-center"><?= $title ?></h1>
 
         <?php echo form_open('users/cadastrar'); ?>
-            <div class="form-group">
+            <div class="form-group pt-5" >
                 <label></label>
                 <input type="text" class="form-control input-style" name="nome" placeholder="Nome">
             </div>
