@@ -83,7 +83,7 @@
                             
                            //Apagar arquivos do BD e servidor
                            $email = $this->session->userdata('email');
-                           $this->upload_model->auto_delete($email);
+                           $this->upload_model->auto_delete($file_name);
                            unlink('uploads/'.$file_name);
 
                            redirect('pages/admin');

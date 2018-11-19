@@ -28,9 +28,8 @@
 
         }
 
-        public function auto_delete($email){
-            $this->db->order_by('email','DESC');
-            $this->db->where('email',$email);
+        public function auto_delete($file_name){
+            $this->db->where('nome_arquivo',$file_name);
             $this->db->delete('videos');
             return true;  
 
