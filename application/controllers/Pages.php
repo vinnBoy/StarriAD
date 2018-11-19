@@ -8,7 +8,7 @@
                 redirect('users/login');
             }
             
-            $data['title'] = 'Enviar vídeos';
+            $data['title'] = 'Criar Campanha';
             $data['videos'] = $this->upload_model->get_videos();
             
             $this->load->view('templates/header');
