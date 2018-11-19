@@ -1,8 +1,9 @@
 
+ <!-- Upload de videos -->
 <?php echo form_open_multipart('pages/upload ') ?>
 <div class="row">
-  <div class="col-md-4 ">
-  <h2><?php echo $title ?></h2><br>
+  <div class="col-md-4 offset-4 center-text">
+  <h2 ><?php echo $title ?></h2><br>
       <h6 class="text-center">Selecione um arquivo para enviar</h6>
       <div class="form-group">
         <input class="btn btn-outline-primary" type="file" name="file" id="file" />
@@ -18,8 +19,8 @@
 </div>
 </form><br>
 
-<h3 class="text-center">Vídeos enviados</h3>
-
+  <!-- Exibição de videos -->
+<h3 class="text-center padding-top-5">Vídeos enviados</h3>
 
 <div class="container table-active">
   <div class="row" style="padding-left:7%">  
@@ -39,6 +40,10 @@
     </div>    
   </div>  
 
+  </div>
+      <!-- /.content-wrapper -->
+</div>
+    <!-- /#wrapper -->
 
 
 
