@@ -69,7 +69,7 @@
                 }
                 else
                 {
-                $this->session->set_flashdata('invalid_file','Arquivo inválido.');
+                $this->session->set_flashdata('invalid_file','Arquivo não selecionado ou inválido.');
                 redirect('pages/admin');
                 }
            
@@ -84,7 +84,7 @@
             $this->upload_model->delete_video($id);
             // Apaga arquivo do servidor
             unlink('uploads/'.$nome_arquivo);
-            
+
             redirect('pages/admin');
             
 
