@@ -24,7 +24,7 @@
 <div class="container table-active">
   <div class="row" style="padding-left:7%">  
     <?php foreach($videos as $video) : ?>
-      <div class="col-md-6" >
+      <div class="col-md-5" >
         <h4><?php echo $video['titulo']; ?></h4>
         <label ><?php echo $video['descricao']; ?></label>    
         <video width="auto" height="240" controls>
