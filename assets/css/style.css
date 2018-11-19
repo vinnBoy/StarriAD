@@ -1,3 +1,6 @@
+.input-style{
+    border-bottom: 0 solid #ced4da !important;
+}
 .container{
     padding-top:2%;
     
@@ -13,7 +16,19 @@
 .padding-top-5{
     padding-top: 5%;
 }
-
+.center{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.center-y{
+    display: flex;
+    align-content: center;
+}
+.center-x{
+    display: flex;
+    justify-content: center;
+}
 .padding-left-10{
     margin-left: 10%;
 }

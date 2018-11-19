@@ -76,6 +76,7 @@
                         $playtime = explode(':',$filename['playtime_string']);
                         $duracao = (int)$playtime[1];
                         
+
                         if($duracao > 15){
                           
                            $this->session->set_flashdata('long_file','Por favor, envie arquivos menores que 15 segundos. Duração:' .$duracao.'s');
@@ -90,6 +91,7 @@
                            $this->session->set_flashdata('upload_success','Arquivo enviado com sucesso. ');
                            redirect('pages/admin');                             
                         }
+
                     }   
                     
                     }
