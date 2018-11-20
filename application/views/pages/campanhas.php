@@ -1,11 +1,14 @@
-
+<div class="col-md-4 offset-5">
+    <h2> <?php echo $title; ?> </h2>
+</div>
  <!-- Upload de videos -->
-<?php echo form_open_multipart('pages/upload ') ?>
+ <?php echo form_open_multipart('pages/upload ') ?>
 <div class="row center-x pt-5" >
+
   <div class="col-md-6 center-text">
-  <h2 ><?php echo $title ?></h2><br>
+ <br>
       
-  <h6 class=" ">Crie sua nova campanha</h6><br>
+  <h5>Crie sua nova campanha</h5><br>
       <div class="form-group">
           <input type="text" name="titulo" class="form-control" placeholder="Título" required autofocus>
       </div>
@@ -22,7 +25,7 @@
 </form><br>
 
   <!-- Exibição de videos -->
-<h3 class="text-center center-x">Vídeos enviados</h3>
+<h3 class="text-center center-x pt-5">Vídeos enviados</h3>
 
 <div class="container table-active">
   <div class="row" >  
