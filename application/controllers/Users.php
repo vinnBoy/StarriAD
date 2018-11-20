@@ -31,6 +31,8 @@
         }
 
         public function cadastros(){
+            $email = $this->session->userdata('email');
+            
             if (!$this->session->userdata('logged_in')) {
                 redirect('users/login');
             }
@@ -53,13 +55,14 @@
             
 
             $data['title'] = 'Meu Cadastro';
+            $data['users'] = $this->user_model->get_users($email);
 
             if($this ->form_validation->run() === FALSE){
                 $this->load->view('templates/header');
                 $this->load->view('users/cadastros', $data);
                 $this->load->view('templates/footer');
             } else{
-                $email = $this->session->userdata('email');
+                
                 $this->user_model->cadastrar_info($email);
                 $this->session->set_flashdata('cadastro_updated','Cadastro Atualizado.');
                 redirect('pages/home');

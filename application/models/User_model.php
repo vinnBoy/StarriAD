@@ -54,6 +54,13 @@
 
 
         }
+
+        public function get_users($email){
+            $this->db->where('email',$email);
+            $query = $this->db->get('users');
+            return $query->result_array();
+
+        }
         // Check username's existence
         public function check_telefone_exists($telefone){
             $query= $this->db->get_where('users', array('telefone' => $telefone));
