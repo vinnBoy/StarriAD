@@ -1,18 +1,18 @@
 <?php
     class Pages extends CI_Controller{
 
-        public function admin(){
+        public function campanhas(){
 
             // Check login
             if(!$this->session->userdata('logged_in')){
                 redirect('users/login');
             }
             
-            $data['title'] = 'Criar Campanha';
+            $data['title'] = 'Campanhas';
             $data['videos'] = $this->upload_model->get_videos();
             
             $this->load->view('templates/header');
-            $this->load->view('pages/admin',$data);
+            $this->load->view('pages/campanhas',$data);
             $this->load->view('templates/footer');
 
            
@@ -49,7 +49,7 @@
             if ($_FILES["file"]["error"] > 0)
                 {
                     $this->session->set_flashdata('upload_error','Erro ao enviar. Por favor tente novamente.');
-                    redirect('pages/admin');
+                    redirect('pages/campanhas');
                 }
                 else
                     {
@@ -58,7 +58,7 @@
                     {
                     $this->session->set_flashdata('file_exists','Arquivo ' . $_FILES["file"]["name"]
                     . ' já existe. Por favor envie outro vídeo.');
-                    redirect('pages/admin');
+                    redirect('pages/campanhas');
                     }
                     else
                     {
@@ -67,7 +67,7 @@
                     $this->form_validation->set_rules('titulo','Título','required');
                     
                     if($this->form_validation->run() === FALSE){
-                        redirect('pages/admin');
+                        redirect('pages/campanhas');
                     } else {
                         move_uploaded_file($_FILES["file"]["tmp_name"],"uploads/" . $_FILES["file"]["name"]);
                         $file_name = $_FILES["file"]["name"];
@@ -77,8 +77,7 @@
                         $duracao = (int)$playtime[1];
                         
 
-                        if($duracao > 15){ 
-                          
+                        if($duracao > 15){                           
                            $this->session->set_flashdata('long_file','Por favor, envie arquivos menores que 15 segundos. Duração:' .$duracao.'s');
                             
                            //Apagar arquivos do BD e servidor
@@ -86,10 +85,10 @@
                            $this->upload_model->auto_delete($file_name);
                            unlink('uploads/'.$file_name);
 
-                           redirect('pages/admin');
+                           redirect('pages/campanhas');
                         }else{
                            $this->session->set_flashdata('upload_success','Arquivo enviado com sucesso. ');
-                           redirect('pages/admin');                             
+                           redirect('pages/campanhas');                             
                         }
 
                     }   
@@ -100,7 +99,7 @@
                 else
                 {
                 $this->session->set_flashdata('invalid_file','Arquivo não selecionado ou inválido.');
-                redirect('pages/admin');
+                redirect('pages/campanhas');
                 }
            
         }
@@ -115,7 +114,7 @@
             // Apaga arquivo do servidor
             unlink('uploads/'.$nome_arquivo);
 
-            redirect('pages/admin');
+            redirect('pages/campanhas');
             
 
         }

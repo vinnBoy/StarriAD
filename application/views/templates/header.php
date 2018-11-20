@@ -50,9 +50,9 @@
   </li>
   
   <li class="nav-item">
-    <a class="nav-link" href="admin">
+    <a class="nav-link" href="campanhas">
       <i class="fas fa-fw fa-chart-area"></i>
-      <span>Criar Campanha</span></a>
+      <span>Campanhas</span></a>
   </li>
   
 </ul>
