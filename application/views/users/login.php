@@ -3,7 +3,7 @@
         <div class="col-md-4">
             <h1 class="text-center"><?php echo $title; ?></h1>
             <div class="form-group">
-                <input type="text" name="email" class="form-control" placeholder="E-mail" required autofocus>
+                <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus>
             </div>
             <div class="form-group">
                 <input type="password" name="senha" class="form-control" placeholder="Senha" required autofocus>

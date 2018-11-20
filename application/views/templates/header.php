@@ -43,16 +43,22 @@
 <!-- Sidebar -->
 <ul class="sidebar navbar-nav">
   <li class="nav-item ">
-    <a class="nav-link" href="home">
+    <a class="nav-link" href="../pages/home">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Home</span>
     </a>
   </li>
   
   <li class="nav-item">
-    <a class="nav-link" href="campanhas">
+    <a class="nav-link" href="../pages/campanhas">
       <i class="fas fa-fw fa-chart-area"></i>
       <span>Campanhas</span></a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="../users/cadastros">
+      <i class="fas fa-fw fa-chart-area"></i>
+      <span>Meu Cadastro</span></a>
   </li>
   
 </ul>
@@ -84,6 +90,9 @@
   <?php endif; ?>
   <?php if($this->session->flashdata('long_file')) : ?>
     <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('long_file').'</p>'; ?>
+  <?php endif; ?>
+  <?php if($this->session->flashdata('cadastro_updated')) : ?>
+    <?php echo '<p class="alert alert-success">'.$this->session->flashdata('cadastro_updated').'</p>'; ?>
   <?php endif; ?>
   
 

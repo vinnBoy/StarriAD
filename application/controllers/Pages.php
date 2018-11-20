@@ -29,6 +29,8 @@
             $this->load->view('templates/footer');
 
         }
+
+        
         // Upload video
         public function upload(){ 
             include('assets/getid3/getid3/getid3.php');

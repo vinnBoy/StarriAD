@@ -1,7 +1,11 @@
 <?php 
     class Users extends CI_Controller{
-        // Register user
+        
         public function cadastrar(){
+            if($this->session->userdata('logged_in')){
+                redirect('pages/home');
+            }
+
             $data['title'] = 'Cadastro';
 
             $this->form_validation->set_rules('nome','Nome', 'required');
@@ -25,8 +29,49 @@
                 redirect('users/login');
             }
         }
-        // Login user
+
+        public function cadastros(){
+            if (!$this->session->userdata('logged_in')) {
+                redirect('users/login');
+            }
+
+            $this->form_validation->set_rules('nome','Nome', 'required');
+            $this->form_validation->set_rules('nome_empresa','Nome da empresa', 'required');
+            $this->form_validation->set_rules('telefone','Telefone', 'required|callback_check_telefone_exists');
+            $this->form_validation->set_rules('email','Email', 'required');
+            $this->form_validation->set_rules('razao_social','Razão Social', 'required');
+            $this->form_validation->set_rules('cnpj','CNPJ', 'required');
+            $this->form_validation->set_rules('banco','Banco', 'required');
+            $this->form_validation->set_rules('agencia','Agência', 'required');
+            $this->form_validation->set_rules('conta','Conta', 'required');
+            $this->form_validation->set_rules('cep','CEP', 'required');
+            $this->form_validation->set_rules('rua','Rua', 'required');
+            $this->form_validation->set_rules('numero','Número', 'required');
+            $this->form_validation->set_rules('bairro','Bairro', 'required');
+            $this->form_validation->set_rules('cidade','Cidade', 'required');
+            $this->form_validation->set_rules('estado','Estado', 'required');
+            
+
+            $data['title'] = 'Meu Cadastro';
+
+            if($this ->form_validation->run() === FALSE){
+                $this->load->view('templates/header');
+                $this->load->view('users/cadastros', $data);
+                $this->load->view('templates/footer');
+            } else{
+                $email = $this->session->userdata('email');
+                $this->user_model->cadastrar_info($email);
+                $this->session->set_flashdata('cadastro_updated','Cadastro Atualizado.');
+                redirect('pages/home');
+             }
+
+        }
+
         public function login(){
+            if($this->session->userdata('logged_in')){
+                redirect('pages/home');
+            }
+            
             $data['title'] = 'Login';
 
             $this->form_validation->set_rules('email','email', 'required');
@@ -37,9 +82,8 @@
                 $this->load->view('users/login', $data);
                 $this->load->view('templates/footer');
             }else {
-                // Get email
+                
                 $email = $this->input->post('email');
-                // Get and encrypt password
                 $senha = md5($this->input->post('senha'));
 
                 // Login user
@@ -64,7 +108,6 @@
             }
         }
 
-        // Log user out
         public function logout(){
             $this->session->unset_userdata('logged_in');
             $this->session->unset_userdata('user_id');
@@ -73,7 +116,7 @@
             redirect('users/login');
 
         }
-        
+
 
         public function check_telefone_exists($telefone){
             $this->form_validation->set_message('check_telefone_exists', 'Telefone já cadastrado. Por favor insira outro.');

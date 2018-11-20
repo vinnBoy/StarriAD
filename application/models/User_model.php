@@ -1,8 +1,10 @@
 <?php
     class User_model extends CI_Model{
+        
         public function __construct(){
             $this->load->database();
         }
+
         public function cadastrar($enc_senha){
             // User data array
             $data = array(
@@ -18,9 +20,28 @@
 
         }
 
-        // Log user in
+        public function cadastrar_info($email){
+
+            $data = array(
+                'razao_social' => $this->input->post('razao_social'),
+                'cnpj' => $this->input->post('cnpj'),
+                'banco' => $this->input->post('banco'),
+                'agencia' => $this->input->post('agencia'),
+                'conta' => $this->input->post('conta'),
+                'cep' => $this->input->post('cep'),
+                'rua' => $this->input->post('rua'),
+                'numero' => $this->input->post('numero'),
+                'complemento' => $this->input->post('complemento'),
+                'bairro' => $this->input->post('bairro'),
+                'cidade' => $this->input->post('cidade'),
+                'estado' => $this->input->post('estado')
+            );
+            $this->db->where('email', $email);
+            $this->db->update('users', $data);
+        }
+
         public function login($email, $senha){
-        // Validate
+            // Validate
             $this->db->where('email', $email);
             $this->db->where('senha', $senha);
 
