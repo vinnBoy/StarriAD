@@ -8,7 +8,7 @@
   <div class="col-md-6 center-text">
  <br>
       
-  <h5>Crie sua nova campanha</h5><br>
+  <h3>Crie sua nova campanha</h3><br>
       <div class="form-group">
           <input type="text" name="titulo" class="form-control" placeholder="Título" required autofocus>
       </div>

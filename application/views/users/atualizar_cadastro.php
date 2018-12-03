@@ -4,8 +4,9 @@
 
 <div class="row center-x pt-5">   
     <div class="col-md-8 ">
+    <?php echo validation_errors(); ?>
         <h3>Dados principais</h3>
-        <?php echo form_open('users/cadastros'); ?>
+        <?php echo form_open('users/atualizar_cadastro'); ?>
             <div class="form-group " >
                 <label></label>
                 <input type="text" class="form-control input-style" name="nome" value="<?php echo $users[0]['nome'];?>" placeholder="Nome">
@@ -18,7 +19,7 @@
 
             <div class="form-group">
                 <label></label>
-                <input type="email" class="form-control input-style" name="email" value="<?php echo $users[0]['email'];?>" placeholder="E-mail">
+                <input type="email" readonly class="form-control input-style" name="email" value="<?php echo $users[0]['email'];?>" placeholder="E-mail">
             </div>
 
             <div class="form-group">
@@ -86,12 +87,6 @@
                     <label></label>
                     <input type="text" class="form-control input-style" name="estado" id="estado" value="<?php echo $users[0]['estado'];?>" placeholder="Estado">
                 </div>
-
-
-           
-                      
-
-        <?php echo validation_errors(); ?>
 
 
             <button type="submit" class="btn btn-primary btn-block">Atualizar Cadastro</button>

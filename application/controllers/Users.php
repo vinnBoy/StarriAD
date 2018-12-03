@@ -30,7 +30,7 @@
             }
         }
 
-        public function cadastros(){
+        public function atualizar_cadastro(){
             $email = $this->session->userdata('email');
             
             if (!$this->session->userdata('logged_in')) {
@@ -39,7 +39,7 @@
 
             $this->form_validation->set_rules('nome','Nome', 'required');
             $this->form_validation->set_rules('nome_empresa','Nome da empresa', 'required');
-            $this->form_validation->set_rules('telefone','Telefone', 'required|callback_check_telefone_exists');
+            $this->form_validation->set_rules('telefone','Telefone', 'required');
             $this->form_validation->set_rules('email','Email', 'required');
             $this->form_validation->set_rules('razao_social','Razão Social', 'required');
             $this->form_validation->set_rules('cnpj','CNPJ', 'required');
@@ -52,18 +52,17 @@
             $this->form_validation->set_rules('bairro','Bairro', 'required');
             $this->form_validation->set_rules('cidade','Cidade', 'required');
             $this->form_validation->set_rules('estado','Estado', 'required');
-            
 
             $data['title'] = 'Meu Cadastro';
             $data['users'] = $this->user_model->get_users($email);
 
             if($this ->form_validation->run() === FALSE){
                 $this->load->view('templates/header');
-                $this->load->view('users/cadastros', $data);
+                $this->load->view('users/atualizar_cadastro', $data);
                 $this->load->view('templates/footer');
             } else{
                 
-                $this->user_model->cadastrar_info($email);
+                $this->user_model->atualizar_cadastro($email);
                 $this->session->set_flashdata('cadastro_updated','Cadastro Atualizado.');
                 redirect('pages/home');
              }

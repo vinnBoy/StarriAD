@@ -56,7 +56,7 @@
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="../users/cadastros">
+    <a class="nav-link" href="../users/atualizar_cadastro">
       <i class="fas fa-fw fa-chart-area"></i>
       <span>Meu Cadastro</span></a>
   </li>

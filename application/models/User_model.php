@@ -20,9 +20,10 @@
 
         }
 
-        public function cadastrar_info($email){
+        public function atualizar_cadastro($email){
 
             $data = array(
+                
                 'razao_social' => $this->input->post('razao_social'),
                 'cnpj' => $this->input->post('cnpj'),
                 'banco' => $this->input->post('banco'),
