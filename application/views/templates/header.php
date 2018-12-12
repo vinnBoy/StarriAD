@@ -60,6 +60,12 @@
       <i class="fas fa-fw fa-chart-area"></i>
       <span>Meu Cadastro</span></a>
   </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/atualizar_cadastro">
+      <i class="fas fa-fw fa-chart-area"></i>
+      <span>Termos e Condições</span></a>
+  </li>
   
 </ul>
 
@@ -93,6 +99,9 @@
   <?php endif; ?>
   <?php if($this->session->flashdata('cadastro_updated')) : ?>
     <?php echo '<p class="alert alert-success">'.$this->session->flashdata('cadastro_updated').'</p>'; ?>
+  <?php endif; ?>
+  <?php if($this->session->flashdata('not_updated')) : ?>
+    <?php echo '<p class="alert alert-warning">'.$this->session->flashdata('not_updated').'</p>'; ?>
   <?php endif; ?>
   
 

@@ -23,7 +23,9 @@
         public function atualizar_cadastro($email){
 
             $data = array(
-                
+                'nome' => $this->input->post('nome'),
+                'nome_empresa' => $this->input->post('nome_empresa'),
+                'telefone' => $this->input->post('telefone'),
                 'razao_social' => $this->input->post('razao_social'),
                 'cnpj' => $this->input->post('cnpj'),
                 'banco' => $this->input->post('banco'),
@@ -60,6 +62,14 @@
             $this->db->where('email',$email);
             $query = $this->db->get('users');
             return $query->result_array();
+
+        }
+        public function check_register($email){
+            $this->db->where('email',$email);
+            $this->db->select('cnpj');
+            $query = $this->db->get('users');
+            $result = $query->row();
+            return $result->cnpj;
 
         }
         // Check username's existence

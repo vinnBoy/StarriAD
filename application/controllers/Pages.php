@@ -7,15 +7,22 @@
             if(!$this->session->userdata('logged_in')){
                 redirect('users/login');
             }
-            
+            $email = $this->session->userdata('email');
+            $data['updated'] = $this->user_model->check_register($email);
+            if(empty($data['updated'])){
+                $this->session->set_flashdata('not_updated', 'Por favor, atualize seu cadastro para criar uma campanha.');
+               redirect('users/atualizar_cadastro');
+            }else{
+
             $data['title'] = 'Campanhas';
             $data['videos'] = $this->upload_model->get_videos();
             
             $this->load->view('templates/header');
             $this->load->view('pages/campanhas',$data);
             $this->load->view('templates/footer');
-
-           
+               
+            }
+            
         }
 
         public function home(){
@@ -36,11 +43,13 @@
             include('assets/getid3/getid3/getid3.php');
             $getID3 = new getID3();
             
-            $allowedExts = array("mp4", "MP4", "3gp", "3GP");
+            $allowedExts = array("mp4", "MP4", "3gp", "3GP","avi", "AVI");
             $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
             if ((($_FILES["file"]["type"] == "video/mp4")
             || ($_FILES["file"]["type"] == "video/MP4")
+            || ($_FILES["file"]["type"] == "video/AVI")
+            || ($_FILES["file"]["type"] == "video/avi")
             || ($_FILES["file"]["type"] == "video/3gp")
             || ($_FILES["file"]["type"] == "video/3GP"))
            

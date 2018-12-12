@@ -2,7 +2,7 @@
     <h2> <?php echo $title; ?> </h2>
 </div>
  <!-- Upload de videos -->
- <?php echo form_open_multipart('pages/upload ') ?>
+ <?php echo form_open_multipart('pages/upload') ?>
 <div class="row center-x pt-5" >
 
   <div class="col-md-6 center-text">
