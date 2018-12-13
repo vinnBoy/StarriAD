@@ -62,7 +62,7 @@
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="../pages/atualizar_cadastro">
+    <a class="nav-link" href="../pages/termos">
       <i class="fas fa-fw fa-chart-area"></i>
       <span>Termos e Condições</span></a>
   </li>

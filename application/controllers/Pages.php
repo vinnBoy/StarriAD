@@ -37,6 +37,17 @@
 
         }
 
+        public function termos(){
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            $data['title'] = 'Termos e Condições';
+
+            $this->load->view('templates/header');
+            $this->load->view('pages/termos', $data);
+            $this->load->view('templates/footer');
+        }
+
         
         // Upload video
         public function upload(){ 
