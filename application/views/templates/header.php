@@ -62,9 +62,15 @@
   </li>
 
   <li class="nav-item">
+    <a class="nav-link" href="../pages/filiais">
+      <i class="fas fa-fw fa-chart-area"></i>
+      <span>Filiais</span></a>
+  </li>
+
+  <li class="nav-item">
     <a class="nav-link" href="../pages/termos">
       <i class="fas fa-fw fa-chart-area"></i>
-      <span>Termos e Condições</span></a>
+      <span>Termos Legais</span></a>
   </li>
   
 </ul>

@@ -67,7 +67,7 @@
                         <label></label>
                         <input type="text" class="form-control input-style" name="numero" value="<?php echo $users[0]['numero'];?>" placeholder="Número">
                     </div>
-                    </div><br>
+                </div><br>
                 <div class="form-group " >
                     <label></label>
                     <input type="text" class="form-control input-style" name="complemento" value="<?php echo $users[0]['complemento'];?>" placeholder="Complemento">

@@ -63,10 +63,19 @@
             } else{
                 
                 $this->user_model->atualizar_cadastro($email);
-                $this->session->set_flashdata('cadastro_updated','Cadastro Atualizado.');
-                redirect('pages/home');
+                $this->session->set_flashdata('cadastro_updated','Cadastro Atualizado. Para continuar, aceite os Termos e Condições.');
+                redirect('pages/termos');
              }
 
+        }
+
+        public function aceitar_termos(){
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            $email = $this->session->userdata('email');
+            $this->user_model->aceitar_termos($email);
+            redirect('pages/campanhas');
         }
 
         public function login(){

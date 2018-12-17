@@ -21,7 +21,6 @@
         }
 
         public function atualizar_cadastro($email){
-
             $data = array(
                 'nome' => $this->input->post('nome'),
                 'nome_empresa' => $this->input->post('nome_empresa'),
@@ -41,6 +40,12 @@
             );
             $this->db->where('email', $email);
             $this->db->update('users', $data);
+        }
+
+        public function aceitar_termos($email){
+            $this->db->set('termos', '1');
+            $this->db->where('email', $email);
+            $this->db->update('users');
         }
 
         public function login($email, $senha){
@@ -70,6 +75,15 @@
             $query = $this->db->get('users');
             $result = $query->row();
             return $result->cnpj;
+
+        }
+
+        public function check_admin($email){
+            $this->db->where('email',$email);
+            $this->db->select('admin');
+            $query = $this->db->get('users');
+            $result = $query->row();
+            return $result->admin;
 
         }
         // Check username's existence

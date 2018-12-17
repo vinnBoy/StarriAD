@@ -15,7 +15,7 @@
             }else{
 
             $data['title'] = 'Campanhas';
-            $data['videos'] = $this->upload_model->get_videos();
+            $data['campanhas'] = $this->upload_model->get_videos();
             
             $this->load->view('templates/header');
             $this->load->view('pages/campanhas',$data);
@@ -29,19 +29,42 @@
             if(!$this->session->userdata('logged_in')){
                 redirect('users/login');
             }
+            $email = $this->session->userdata('email');
+            $data['admin'] = $this->user_model->check_admin($email);
             $data['title'] = 'Home';
 
-            $this->load->view('templates/header');
-            $this->load->view('pages/home', $data);
-            $this->load->view('templates/footer');
+            if(!$data['admin']){
+                $this->load->view('templates/header');
+                $this->load->view('pages/home', $data);
+                $this->load->view('templates/footer');
+
+            }else{
+                $this->load->view('templates/header');
+                $this->load->view('admin/home', $data);
+                $this->load->view('templates/footer');
+
+            }         
 
         }
+
+        public function filiais(){
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            $data['title'] = 'Filiais';
+
+            $this->load->view('templates/header');
+            $this->load->view('pages/filiais', $data);
+            $this->load->view('templates/footer');
+        }
+
+       
 
         public function termos(){
             if(!$this->session->userdata('logged_in')){
                 redirect('users/login');
             }
-            $data['title'] = 'Termos e Condições';
+            $data['title'] = 'Termos Legais';
 
             $this->load->view('templates/header');
             $this->load->view('pages/termos', $data);
@@ -54,15 +77,17 @@
             include('assets/getid3/getid3/getid3.php');
             $getID3 = new getID3();
             
-            $allowedExts = array("mp4", "MP4", "3gp", "3GP","avi", "AVI");
+            $allowedExts = array("mp4", "MP4", "jpeg", "JPEG","png", "PNG","gif", "GIF");
             $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
             if ((($_FILES["file"]["type"] == "video/mp4")
             || ($_FILES["file"]["type"] == "video/MP4")
-            || ($_FILES["file"]["type"] == "video/AVI")
-            || ($_FILES["file"]["type"] == "video/avi")
-            || ($_FILES["file"]["type"] == "video/3gp")
-            || ($_FILES["file"]["type"] == "video/3GP"))
+            || ($_FILES["file"]["type"] == "image/jpeg")
+            || ($_FILES["file"]["type"] == "image/JPEG")
+            || ($_FILES["file"]["type"] == "image/gif")
+            || ($_FILES["file"]["type"] == "image/GIF")
+            || ($_FILES["file"]["type"] == "image/png")
+            || ($_FILES["file"]["type"] == "image/PNG"))
            
             && ($_FILES["file"]["size"] < 1000000)
             && in_array($extension, $allowedExts))
