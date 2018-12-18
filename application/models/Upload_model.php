@@ -6,7 +6,16 @@
                 'titulo' => $this->input->post('titulo'),
                 'descricao' => $this->input->post('descricao'),
                 'nome_arquivo' => $file_name,
-                'email' => $this->session->userdata('email')
+                'email' => $this->session->userdata('email'),
+                'data_inicio' => $this->input->post('data_inicio'),
+                'data_encerramento' => $this->input->post('data_encerramento'),
+                'investimento' => $this->input->post('investimento'),
+                'valor_desconto' => $this->input->post('valor_desconto'),
+                'num_cupons' => $this->input->post('num_cupons'),
+                'categoria' => $this->input->post('categoria'),
+                'sub_categoria' => $this->input->post('sub_categoria'),
+                'palavras_chave' => $this->input->post('palavras_chave'),
+                'pergunta' => $this->input->post('pergunta')
             );
 
             return $this->db->insert('campanhas',$data);

@@ -19,34 +19,35 @@
           <input type="text" name="data_inicio" class="form-control" placeholder="Data de início" required autofocus>
       </div>
       <div class="form-group">
-          <input type="text" name="data_encerramento" class="form-control" placeholder="Data de encerramento"  autofocus></input>
+          <input type="text" name="data_encerramento" class="form-control" placeholder="Data de encerramento"  autofocus>
       </div>
       <div class="form-group">
           <input type="text" name="investimento" class="form-control" placeholder="Investimento (R$)" required autofocus>
       </div>
       <div class="form-group">
-          <input type="text" name="valor_desconto" class="form-control" placeholder="Valor do desconto (R$)"  autofocus></input>
+          <input type="text" name="valor_desconto" class="form-control" placeholder="Valor do desconto (R$)"  autofocus>
       </div>
       <div class="form-group">
           <input type="text" name="num_cupons" class="form-control" placeholder="Número de cupons" required autofocus>
       </div>
       <div class="form-group">
-          <input type="text" name="categoria" class="form-control" placeholder="Categoria"  autofocus></input>
+          <input type="text" name="categoria" class="form-control" placeholder="Categoria"  autofocus>
       </div>
       <div class="form-group">
-          <input type="text" name="sub_categoria" class="form-control" placeholder="Sub-categoria"  autofocus></input>
+          <input type="text" name="sub_categoria" class="form-control" placeholder="Sub-categoria"  autofocus>
       </div>
       <div class="form-group">
-          <input type="text" name="palavras_chave" class="form-control" placeholder="Palavras chave"  autofocus></input>
+          <input type="text" name="palavras_chave" class="form-control" placeholder="Palavras chave"  autofocus>
+      </div>
+      <div class="form-group">
+          <input type="text" name="pergunta" class="form-control" placeholder="Pergunta chave"  autofocus>
       </div>
       
       <h6 class="text-center ">Selecione um arquivo para publicar</h6>
       <div class="form-group center-x">
         <input class="btn btn-outline-primary" type="file" name="file" id="file" />
       </div>
-      <div class="form-group">
-          <input type="text" name="pergunta" class="form-control" placeholder="Pergunta chave"  autofocus></input>
-      </div>
+      
       
       <input class="btn btn-primary btn-block " type="submit" name="submit" value="Publicar campanha"/>
   </div>    
