@@ -16,6 +16,7 @@
 
             $data['title'] = 'Campanhas';
             $data['campanhas'] = $this->upload_model->get_videos();
+            $data
             
             $this->load->view('templates/header');
             $this->load->view('pages/campanhas',$data);
@@ -148,6 +149,16 @@
                 $this->session->set_flashdata('invalid_file','Arquivo não selecionado ou inválido.');
                 redirect('pages/campanhas');
                 }
+        }
+
+        public function criar_filial(){
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            $email = $this->session->userdata('email');        
+            $this->upload_model->criar_filial($email);  
+            $this->session->set_flashdata('filial_criada','Filial adicionada com sucesso.');
+            redirect('pages/filiais');      
            
         }
         public function delete($id){

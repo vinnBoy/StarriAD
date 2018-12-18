@@ -22,6 +22,25 @@
 
         }
 
+        
+        public function criar_filial($file_name){
+            $data = array(
+                'nome' => $this->input->post('nome'),
+                'cep' => $this->input->post('cep'),
+                'rua' => $this->input->post('rua'),
+                'numero' => $this->input->post('numero'),
+                'complemento' => $this->input->post('complemento'),
+                'bairro' => $this->input->post('bairro'),
+                'cidade' => $this->input->post('cidade'),
+                'estado' => $this->input->post('estado'),
+                'centro_comercial' => $this->input->post('centro_comercial')
+            );
+
+            return $this->db->insert('filiais',$data);
+
+        }
+
+
         public function get_videos(){
             $email = $this->session->userdata('email');
             $this->db->where('email', $email);

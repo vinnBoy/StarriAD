@@ -4,8 +4,8 @@
 <div class="row center-x pt-5">   
     <div class="col-md-8 ">
     <?php echo validation_errors(); ?>
-        <h3>Cadastrar Lojas</h3>
-        <?php echo form_open('pages/criar_filiais'); ?>
+        <h3>Cadastrar Filiais</h3>
+        <?php echo form_open('pages/criar_filial'); ?>
     <div class="form-group">
         <input type="text" name="nome" class="form-control" placeholder="Nome"  autofocus></input>
     </div>

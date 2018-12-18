@@ -109,5 +109,8 @@
   <?php if($this->session->flashdata('not_updated')) : ?>
     <?php echo '<p class="alert alert-warning">'.$this->session->flashdata('not_updated').'</p>'; ?>
   <?php endif; ?>
+  <?php if($this->session->flashdata('filial_criada')) : ?>
+    <?php echo '<p class="alert alert-success">'.$this->session->flashdata('filial_criada').'</p>'; ?>
+  <?php endif; ?>
   
 

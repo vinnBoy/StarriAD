@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18-Dez-2018 às 16:43
+-- Generation Time: 18-Dez-2018 às 20:26
 -- Versão do servidor: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -67,6 +67,13 @@ CREATE TABLE `filiais` (
   `estado` varchar(255) NOT NULL,
   `centro_comercial` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `filiais`
+--
+
+INSERT INTO `filiais` (`nome`, `cep`, `rua`, `numero`, `complemento`, `bairro`, `cidade`, `estado`, `centro_comercial`) VALUES
+('sadas', 123, 'sda', 213, 'sad', 'asd', 'asd', 'asd', 'asd');
 
 -- --------------------------------------------------------
 

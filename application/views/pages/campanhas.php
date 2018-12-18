@@ -5,7 +5,7 @@
  <?php echo form_open_multipart('pages/upload') ?>
 <div class="row center-x pt-5" >
 
-  <div class="col-md-6 center-text">
+  <div class="col-md-8 center-text">
  <br>
       
   <h3>Crie sua nova campanha</h3><br>
@@ -47,6 +47,11 @@
       <div class="form-group center-x">
         <input class="btn btn-outline-primary" type="file" name="file" id="file" />
       </div>
+
+      <h6>Filiais participantes</h6><br>
+      <?php foreach ($filial as $filiais) : ?>
+        <input type="checkbox" name="<?php $name; ?>" id="<?php $id; ?>">
+      <?php endforeach;?>
       
       
       <input class="btn btn-primary btn-block " type="submit" name="submit" value="Publicar campanha"/>
