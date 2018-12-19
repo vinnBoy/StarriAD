@@ -32,21 +32,23 @@ chart.render();
 </script>
 
 <body>
-<div id="chartContainer" style="padding-top: 40px; padding-left: 40px; height: 370px; width: 90%;"></div><br>
+<div id="chartContainer" style="padding-top: 40px; padding-left: 40px; height: 370px; width: 90%;"></div><br><br><br>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 
   <div class="container table-active ">
-  <div class="row" >  
+  <h3 class="text-center center-x pt-5">Listagem de Campanhas</h3>
+  <div class="row pt-5" > 
+  
   <?php foreach ($campanhas as $campanha) : ?>
-  <div class="col-md-4 center-text padding-left-10 mt-5">
-    <h5>Usuário</h5>
+  <div class="col-md-4 center-text padding-left-10 mt-6">
+    <h6>Usuário</h6>
     <label><?php echo $campanha['email'];?></label>
-    <h5>Nome da campanha</h5>
+    <h6>Nome da campanha</h6>
     <label><?php echo $campanha['titulo'];?></label>
-    <h5>Investimento</h5>
+    <h6>Investimento</h6>
     <label><?php echo $campanha['investimento'];?></label>
-    <h5>Categoria</h5>
+    <h6>Categoria</h6>
     <label><?php echo $campanha['categoria'];?></label>
     <hr>
   </div>

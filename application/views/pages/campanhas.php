@@ -78,8 +78,8 @@
             <?php else : ?>
                 <img width="auto" height="240" src="<?php echo base_url() .'uploads/'.$campanha['nome_arquivo']; ?>"><br><br>
             <?php endif;?>
-            <label ><?php echo $campanha['categoria']."|".$campanha['sub_categoria']; ?></label><br>
-            <label ><?php echo $campanha['filiais']; ?></label> <br>
+            <label ><?php echo "Categorias: ".$campanha['categoria']."|".$campanha['sub_categoria']; ?></label><br>
+            <label ><?php echo "Filiais: ".$campanha['filiais']; ?></label> <br>
             <label ><?php echo "Investimento: R$ ".$campanha['investimento']; ?></label> <br>
         
         <?php echo form_open('pages/delete/'.$campanha['id']); ?>

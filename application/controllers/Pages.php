@@ -163,8 +163,8 @@ use PHPMailer\PHPMailer\Exception;
                                //Content
                                $mail->isHTML(true);                                  // Set email format to HTML
                                $mail->Subject = 'Campanha Criada';
-                               $mail->Body    = 'Sua campanha foi criada! Realize o pagamento para que sua camapnha seja publicada';
-                               $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+                               $mail->Body    = 'Sua campanha foi criada! Realize o pagamento para que sua campanha seja publicada.';
+                               $mail->AltBody = '';
            
                                $mail->send();
                               
