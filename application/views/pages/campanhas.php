@@ -47,14 +47,15 @@
       <div class="form-group center-x">
         <input class="btn btn-outline-primary" type="file" name="file" id="file" />
       </div>
-
-      <h6>Filiais participantes</h6><br>
-      <?php foreach ($filial as $filiais) : ?>
-        <input type="checkbox" name="<?php $name; ?>" id="<?php $id; ?>">
-      <?php endforeach;?>
+      <div >
+        <h6>Filiais participantes</h6><br>
+        <?php foreach ($filiais as $filial) : ?>
+            <input type="checkbox" name="filial[]" id="<?php echo $filial['id']; ?>" id="<?php echo $filial['nome']; ?>">
+            <label for="<?php echo $filial['id']; ?>"><?php echo $filial['nome']; ?></label>
+        <?php endforeach;?>
+      </div>
       
-      
-      <input class="btn btn-primary btn-block " type="submit" name="submit" value="Publicar campanha"/>
+      <input class="btn btn-primary btn-block mt-5 " type="submit" name="submit" value="Publicar campanha"/>
   </div>    
 </div>
 </form><br>

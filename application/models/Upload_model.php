@@ -33,7 +33,8 @@
                 'bairro' => $this->input->post('bairro'),
                 'cidade' => $this->input->post('cidade'),
                 'estado' => $this->input->post('estado'),
-                'centro_comercial' => $this->input->post('centro_comercial')
+                'centro_comercial' => $this->input->post('centro_comercial'),
+                'email' => $this->session->userdata('email')                
             );
 
             return $this->db->insert('filiais',$data);
@@ -45,6 +46,18 @@
             $email = $this->session->userdata('email');
             $this->db->where('email', $email);
             $query = $this->db->get('campanhas');
+            return $query->result_array();
+        }
+
+        public function get_campanhas(){
+            $query = $this->db->get('campanhas');
+            return $query->result_array();
+        }
+
+        public function get_filiais(){
+            $email = $this->session->userdata('email');
+            $this->db->where('email',$email);
+            $query = $this->db->get('filiais');
             return $query->result_array();
         }
 

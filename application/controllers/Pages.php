@@ -16,7 +16,7 @@
 
             $data['title'] = 'Campanhas';
             $data['campanhas'] = $this->upload_model->get_videos();
-            $data
+            $data['filiais'] = $this->upload_model->get_filiais();
             
             $this->load->view('templates/header');
             $this->load->view('pages/campanhas',$data);
@@ -33,6 +33,7 @@
             $email = $this->session->userdata('email');
             $data['admin'] = $this->user_model->check_admin($email);
             $data['title'] = 'Home';
+            $data['campanhas'] = $this->upload_model->get_campanhas();
 
             if(!$data['admin']){
                 $this->load->view('templates/header');
@@ -111,7 +112,6 @@
                     else
                     {
                     
-                    // Inserir dados em BD
                     $this->form_validation->set_rules('titulo','Título','required');
                     
                     if($this->form_validation->run() === FALSE){
@@ -120,6 +120,7 @@
                         move_uploaded_file($_FILES["file"]["tmp_name"],"uploads/" . $_FILES["file"]["name"]);
                         $file_name = $_FILES["file"]["name"];
                         $this->upload_model->create_info($file_name);
+
                         $filename = $getID3->analyze('uploads/'.$file_name);
                         $playtime = explode(':',$filename['playtime_string']);
                         $duracao = (int)$playtime[1];
@@ -136,6 +137,15 @@
                            redirect('pages/campanhas');
                         }else{
                            $this->session->set_flashdata('upload_success','Arquivo enviado com sucesso. ');
+                           $this->load->library('email');
+                            // Enviar email
+                            $this->email->from('vinicius.rmoraes@hotmail.com', 'StarriAD');
+                            $this->email->to('rmoraes.vinicius@gmail.com');
+                            
+                            $this->email->subject('Campanha Criada');
+                            $this->email->message('Sua campanha foi criada e aguarda o pagamento para ser publicada.');
+
+                            $this->email->send();
                            redirect('pages/campanhas');                             
                         }
 
