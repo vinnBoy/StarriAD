@@ -1,4 +1,7 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
     class Pages extends CI_Controller{
 
         public function campanhas(){
@@ -137,7 +140,37 @@
                         }else{
                            $this->session->set_flashdata('upload_success','Arquivo enviado com sucesso. ');
                            
-                            
+                           include ('assets/PHPMailer/src/Exception.php');
+                           include ('assets/PHPMailer/src/PHPMailer.php');
+                           include ('assets/PHPMailer/src/SMTP.php');           
+           
+                           $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+                           try {
+                               //Server settings
+                               $mail->isSMTP();                                      // Set mailer to use SMTP
+                               $mail->Host = 'smtp.googlemail.com';  // Specify main and backup SMTP servers
+                               $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                               $mail->Username = 'rmoraes.vinicius@gmail.com';                 // SMTP username
+                               $mail->Password = 'cheeser123';                           // SMTP password
+                               $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                               $mail->Port = 587;                                    // TCP port to connect to
+           
+                               //Recipients
+                               $mail->setFrom('rmoraes.vinicius@gmail.com', 'StarriAD');
+                               $mail->addAddress('rmoraes.vinicius@gmail.com', 'rmoraes.vinicius@gmail.com');     // Add a recipient
+                              
+           
+                               //Content
+                               $mail->isHTML(true);                                  // Set email format to HTML
+                               $mail->Subject = 'Campanha Criada';
+                               $mail->Body    = 'Sua campanha foi criada! Realize o pagamento para que sua camapnha seja publicada';
+                               $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+           
+                               $mail->send();
+                              
+                           } catch (Exception $e) {
+                               $this->session->set_flashdata('email_fail','E-mail não enviado. '.$mail->ErrorInfo);
+                                }
                            redirect('pages/campanhas');                             
                         }
 
@@ -149,32 +182,6 @@
                 else
                 {
                 $this->session->set_flashdata('invalid_file','Arquivo não selecionado ou inválido.');
-                // Enviar email
-                $config = Array(
-                    'protocol' => 'smtp',
-                    'smtp_host' => 'ssl://smtp.googlemail.com',
-                    'smtp_port' => 465,
-                    'smtp_user' => 'rmoraes.vinicius@gmail.com',// your mail name
-                    'smtp_pass' => 'cheeser123',
-                    'mailtype'  => 'html', 
-                    'charset'   => 'iso-8859-1',
-                     'wordwrap' => TRUE
-                     
-                    );
-
-                $this->load->library('email', $config);
-
-                $this->email->from('rmoraes.vinicius@gmail.com', 'StarriAD');
-                $this->email->to('rmoraes.vinicius@gmail.com');
-                
-                $this->email->subject('Campanha Criada');
-                
-                $this->email->message('Sua campanha foi criada e aguarda o pagamento para ser publicada.');
-
-                if (!$this->email->send()){
-                    $error = $this->email->print_debugger();
-                    $this->session->set_flashdata('email_fail','E-mail não enviado. '.$error);
-                };
                 redirect('pages/campanhas');
                 }
         }
