@@ -50,8 +50,8 @@
       <div >
         <h6>Filiais participantes</h6><br>
         <?php foreach ($filiais as $filial) : ?>
-            <input type="checkbox" name="filial[]" id="<?php echo $filial['id']; ?>" id="<?php echo $filial['nome']; ?>">
-            <label for="<?php echo $filial['id']; ?>"><?php echo $filial['nome']; ?></label>
+            <input type="checkbox" name="filial[]" id="<?php echo $filial['nome']; ?>" value="<?php echo $filial['nome']; ?>">
+            <label for="<?php echo $filial['id']; ?>"><?php echo $filial['nome']." "; ?> </label>
         <?php endforeach;?>
       </div>
       
@@ -67,16 +67,23 @@
   <div class="row" >  
 
     <?php foreach($campanhas as $campanha) : ?>
-
+    <?php $ext = explode('.',$campanha['nome_arquivo']); ?>
       <div class="col-md-4 padding-left-10" >
         <h4><?php echo $campanha['titulo']; ?></h4>
-        <label ><?php echo $campanha['descricao']; ?></label>    
-        <video width="auto" height="240" controls>
-          <source src="<?php echo base_url() .'uploads/'.$campanha['nome_arquivo']; ?>" type="video/MP4">
-        </video><br><br>
+        <label ><?php echo $campanha['descricao']; ?></label> 
+            <?php if ($ext['1'] == 'MP4'  ) : ?>
+                <video width="auto" height="240" controls>
+                    <source src="<?php echo base_url() .'uploads/'.$campanha['nome_arquivo']; ?>" type="video/MP4">
+                </video><br><br>
+            <?php else : ?>
+                <img width="auto" height="240" src="<?php echo base_url() .'uploads/'.$campanha['nome_arquivo']; ?>"><br><br>
+            <?php endif;?>
+            <label ><?php echo $campanha['categoria']."|".$campanha['sub_categoria']; ?></label><br>
+            <label ><?php echo $campanha['filiais']; ?></label> <br>
+            <label ><?php echo "Investimento: R$ ".$campanha['investimento']; ?></label> <br>
         
         <?php echo form_open('pages/delete/'.$campanha['id']); ?>
-          <input type="submit" value="remover" class="btn btn-danger btn-sm">
+          <input type="submit" value="remover campanha" class="btn btn-danger btn-sm">
           <input type="hidden" name="nome_arquivo" value="<?php echo $campanha['nome_arquivo']; ?>">
         </form> <br><br> 
       </div>

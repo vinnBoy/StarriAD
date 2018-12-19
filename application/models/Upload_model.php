@@ -2,6 +2,7 @@
     class Upload_model extends CI_Model{
 
         public function create_info($file_name){
+            $filiais = implode(',', $this->input->post('filial'));
             $data = array(
                 'titulo' => $this->input->post('titulo'),
                 'descricao' => $this->input->post('descricao'),
@@ -15,7 +16,8 @@
                 'categoria' => $this->input->post('categoria'),
                 'sub_categoria' => $this->input->post('sub_categoria'),
                 'palavras_chave' => $this->input->post('palavras_chave'),
-                'pergunta' => $this->input->post('pergunta')
+                'pergunta' => $this->input->post('pergunta'),
+                'filiais' => $filiais
             );
 
             return $this->db->insert('campanhas',$data);

@@ -79,7 +79,7 @@
             include('assets/getid3/getid3/getid3.php');
             $getID3 = new getID3();
             
-            $allowedExts = array("mp4", "MP4", "jpeg", "JPEG","png", "PNG","gif", "GIF");
+            $allowedExts = array("mp4", "MP4", "jpeg", "JPEG","png", "PNG","gif");
             $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
             if ((($_FILES["file"]["type"] == "video/mp4")
@@ -87,7 +87,6 @@
             || ($_FILES["file"]["type"] == "image/jpeg")
             || ($_FILES["file"]["type"] == "image/JPEG")
             || ($_FILES["file"]["type"] == "image/gif")
-            || ($_FILES["file"]["type"] == "image/GIF")
             || ($_FILES["file"]["type"] == "image/png")
             || ($_FILES["file"]["type"] == "image/PNG"))
            
@@ -106,7 +105,7 @@
                     if (file_exists("uploads/" . $_FILES["file"]["name"]))
                     {
                     $this->session->set_flashdata('file_exists','Arquivo ' . $_FILES["file"]["name"]
-                    . ' já existe. Por favor envie outro vídeo.');
+                    . ' já existe. Por favor envie outro arquivo.');
                     redirect('pages/campanhas');
                     }
                     else
