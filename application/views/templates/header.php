@@ -112,5 +112,8 @@
   <?php if($this->session->flashdata('filial_criada')) : ?>
     <?php echo '<p class="alert alert-success">'.$this->session->flashdata('filial_criada').'</p>'; ?>
   <?php endif; ?>
+  <?php if($this->session->flashdata('email_fail')) : ?>
+    <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('email_fail').'</p>'; ?>
+  <?php endif; ?>
   
 

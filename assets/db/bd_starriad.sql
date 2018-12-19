@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 19-Dez-2018 às 10:09
+-- Generation Time: 19-Dez-2018 às 18:24
 -- Versão do servidor: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -42,16 +42,17 @@ CREATE TABLE `campanhas` (
   `categoria` varchar(255) NOT NULL,
   `sub_categoria` varchar(255) NOT NULL,
   `palavras_chave` varchar(255) NOT NULL,
-  `pergunta` varchar(255) NOT NULL
+  `pergunta` varchar(255) NOT NULL,
+  `filiais` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `campanhas`
 --
 
-INSERT INTO `campanhas` (`id`, `titulo`, `descricao`, `nome_arquivo`, `email`, `data_inicio`, `data_encerramento`, `investimento`, `valor_desconto`, `num_cupons`, `categoria`, `sub_categoria`, `palavras_chave`, `pergunta`) VALUES
-(1, 'Russia in 15 seconds', 'asdasd', 'Russia in_15_seconds.MP4', 'admin@admin.com', '0000-00-00', '0000-00-00', 0, 0, 0, 'asdsad', '', '', ''),
-(7, 'asd', 's', 'Saving you $60+ in 15 seconds.MP4', 'vinicius.rmoraes@hotmail.com', '0000-00-00', '0000-00-00', 123, 123, 12, 'asd', 'asd', 'asd', 'asd');
+INSERT INTO `campanhas` (`id`, `titulo`, `descricao`, `nome_arquivo`, `email`, `data_inicio`, `data_encerramento`, `investimento`, `valor_desconto`, `num_cupons`, `categoria`, `sub_categoria`, `palavras_chave`, `pergunta`, `filiais`) VALUES
+(1, 'Russia in 15 seconds', 'asdasd', 'Russia in_15_seconds.MP4', 'admin@admin.com', '0000-00-00', '0000-00-00', 0, 0, 0, 'asdsad', '', '', '', ''),
+(7, 'asd', 's', 'Saving you $60+ in 15 seconds.MP4', 'vinicius.rmoraes@hotmail.com', '0000-00-00', '0000-00-00', 123, 123, 12, 'asd', 'asd', 'asd', 'asd', '');
 
 -- --------------------------------------------------------
 

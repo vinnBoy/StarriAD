@@ -5,7 +5,9 @@
  
   <h3 class="col-md-8 center-x pt-5">Campanhas Publicadas</h3>
 
-  <canvas id="myChart"></canvas>
+  <div class="col-md-5">
+    <canvas id="myChart"></canvas>
+  </div>
 
   <div class="container table-active ">
   <div class="row" >  

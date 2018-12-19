@@ -136,15 +136,8 @@
                            redirect('pages/campanhas');
                         }else{
                            $this->session->set_flashdata('upload_success','Arquivo enviado com sucesso. ');
-                           $this->load->library('email');
-                            // Enviar email
-                            $this->email->from('vinicius.rmoraes@hotmail.com', 'StarriAD');
-                            $this->email->to('rmoraes.vinicius@gmail.com');
+                           
                             
-                            $this->email->subject('Campanha Criada');
-                            $this->email->message('Sua campanha foi criada e aguarda o pagamento para ser publicada.');
-
-                            $this->email->send();
                            redirect('pages/campanhas');                             
                         }
 
@@ -156,6 +149,32 @@
                 else
                 {
                 $this->session->set_flashdata('invalid_file','Arquivo não selecionado ou inválido.');
+                // Enviar email
+                $config = Array(
+                    'protocol' => 'smtp',
+                    'smtp_host' => 'ssl://smtp.googlemail.com',
+                    'smtp_port' => 465,
+                    'smtp_user' => 'rmoraes.vinicius@gmail.com',// your mail name
+                    'smtp_pass' => 'cheeser123',
+                    'mailtype'  => 'html', 
+                    'charset'   => 'iso-8859-1',
+                     'wordwrap' => TRUE
+                     
+                    );
+
+                $this->load->library('email', $config);
+
+                $this->email->from('rmoraes.vinicius@gmail.com', 'StarriAD');
+                $this->email->to('rmoraes.vinicius@gmail.com');
+                
+                $this->email->subject('Campanha Criada');
+                
+                $this->email->message('Sua campanha foi criada e aguarda o pagamento para ser publicada.');
+
+                if (!$this->email->send()){
+                    $error = $this->email->print_debugger();
+                    $this->session->set_flashdata('email_fail','E-mail não enviado. '.$error);
+                };
                 redirect('pages/campanhas');
                 }
         }
