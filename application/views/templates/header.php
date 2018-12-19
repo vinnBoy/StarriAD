@@ -4,6 +4,7 @@
         <link rel ="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
         <link rel ="stylesheet" href="<?php echo base_url();?>/assets/css/style.css">
         <link rel ="stylesheet" href="<?php echo base_url();?>/assets/css/sb-admin.css">
+      
     </head>
     <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">

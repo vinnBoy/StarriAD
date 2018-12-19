@@ -1,13 +1,40 @@
 <div class="col-md-12 center-x">
     <h2> <?php echo $title; ?> </h2>
 </div>
-
+<?php
  
-  <h3 class="col-md-8 center-x pt-5">Campanhas Publicadas</h3>
+$dataPoints = array(
+	array("y" => 2, "label" => "Novembro"),
+	array("y" => count($campanhas), "label" => "Dezembro"),
 
-  <div class="col-md-5">
-    <canvas id="myChart"></canvas>
-  </div>
+);
+ 
+?>
+
+<script>
+window.onload = function () {
+ 
+var chart = new CanvasJS.Chart("chartContainer", {
+	title: {
+		text: "Campanhas Publicadas"
+	},
+	axisY: {
+		title: "Número de campanhas"
+	},
+	data: [{
+		type: "line",
+		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+chart.render();
+ 
+}
+</script>
+
+<body>
+<div id="chartContainer" style="padding-top: 40px; padding-left: 40px; height: 370px; width: 90%;"></div><br>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 
   <div class="container table-active ">
   <div class="row" >  

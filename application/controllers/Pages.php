@@ -151,7 +151,7 @@ use PHPMailer\PHPMailer\Exception;
                                $mail->Host = 'smtp.googlemail.com';  // Specify main and backup SMTP servers
                                $mail->SMTPAuth = true;                               // Enable SMTP authentication
                                $mail->Username = 'rmoraes.vinicius@gmail.com';                 // SMTP username
-                               $mail->Password = 'cheeser123';                           // SMTP password
+                               $mail->Password = '';                           // SMTP password
                                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                                $mail->Port = 587;                                    // TCP port to connect to
            

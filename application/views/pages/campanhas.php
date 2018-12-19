@@ -47,8 +47,8 @@
       <div class="form-group center-x">
         <input class="btn btn-outline-primary" type="file" name="file" id="file" />
       </div>
-      <div >
-        <h6>Filiais participantes</h6><br>
+      <div ><br>
+        <h5>Filiais participantes</h5><br>
         <?php foreach ($filiais as $filial) : ?>
             <input type="checkbox" name="filial[]" id="<?php echo $filial['nome']; ?>" value="<?php echo $filial['nome']; ?>">
             <label for="<?php echo $filial['id']; ?>"><?php echo $filial['nome']." "; ?> </label>
