@@ -42,6 +42,22 @@
       <div class="form-group">
           <input type="text" name="pergunta" class="form-control" placeholder="Pergunta chave"  autofocus>
       </div>
+      <div class="form-group center-x">
+      <input type="radio" name="resposta_correta" id="resposta1" value="resposta1">
+          <input type="text" name="resposta1" class="form-control" placeholder="Resposta 1"  autofocus>
+      </div>
+      <div class="form-group center-x">
+      <input type="radio" name="resposta_correta" id="resposta2" value="resposta2">
+          <input type="text" name="resposta2" class="form-control" placeholder="Resposta 2"  autofocus>
+      </div>
+      <div class="form-group center-x">
+      <input type="radio" name="resposta_correta" id="resposta3" value="resposta3">
+          <input type="text" name="resposta3" class="form-control" placeholder="Resposta 3"  autofocus>
+      </div>
+      <div class="form-group center-x ">
+      <input type="radio" name="resposta_correta" id="resposta4" value="resposta4">
+          <input type="text" name="resposta4" class="form-control" placeholder="Resposta 4"  autofocus>
+      </div>
       
       <h6 class="text-center ">Selecione um arquivo para publicar</h6>
       <div class="form-group center-x">

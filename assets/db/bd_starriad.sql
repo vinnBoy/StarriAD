@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 19-Dez-2018 às 18:24
+-- Generation Time: 20-Dez-2018 às 18:23
 -- Versão do servidor: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -43,6 +43,11 @@ CREATE TABLE `campanhas` (
   `sub_categoria` varchar(255) NOT NULL,
   `palavras_chave` varchar(255) NOT NULL,
   `pergunta` varchar(255) NOT NULL,
+  `resposta1` varchar(255) NOT NULL,
+  `resposta2` varchar(255) NOT NULL,
+  `resposta3` varchar(255) NOT NULL,
+  `resposta4` varchar(255) NOT NULL,
+  `resposta_correta` varchar(255) NOT NULL,
   `filiais` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -50,9 +55,11 @@ CREATE TABLE `campanhas` (
 -- Extraindo dados da tabela `campanhas`
 --
 
-INSERT INTO `campanhas` (`id`, `titulo`, `descricao`, `nome_arquivo`, `email`, `data_inicio`, `data_encerramento`, `investimento`, `valor_desconto`, `num_cupons`, `categoria`, `sub_categoria`, `palavras_chave`, `pergunta`, `filiais`) VALUES
-(1, 'Russia in 15 seconds', 'asdasd', 'Russia in_15_seconds.MP4', 'admin@admin.com', '0000-00-00', '0000-00-00', 0, 0, 0, 'asdsad', '', '', '', ''),
-(7, 'asd', 's', 'Saving you $60+ in 15 seconds.MP4', 'vinicius.rmoraes@hotmail.com', '0000-00-00', '0000-00-00', 123, 123, 12, 'asd', 'asd', 'asd', 'asd', '');
+INSERT INTO `campanhas` (`id`, `titulo`, `descricao`, `nome_arquivo`, `email`, `data_inicio`, `data_encerramento`, `investimento`, `valor_desconto`, `num_cupons`, `categoria`, `sub_categoria`, `palavras_chave`, `pergunta`, `resposta1`, `resposta2`, `resposta3`, `resposta4`, `resposta_correta`, `filiais`) VALUES
+(1, 'Russia in 15 seconds', 'asdasd', 'Russia in_15_seconds.MP4', 'admin@admin.com', '0000-00-00', '0000-00-00', 0, 0, 0, 'asdsad', '', '', '', '', '', '', '', '', ''),
+(7, 'asd', 's', 'Saving you $60+ in 15 seconds.MP4', 'vinicius.rmoraes@hotmail.com', '0000-00-00', '0000-00-00', 123, 123, 12, 'asd', 'asd', 'asd', 'asd', '', '', '', '', '', ''),
+(11, 'asdd', '', 'giphy.gif', 'admin@admin.com', '0000-00-00', '0000-00-00', 2, 2, 3, 'asd', 'asd', 'asd', 'asd', '', '', '', '', '', 'asd'),
+(13, 'asdd', '', 'd25290d558bd84326dc021dfe128333b.png', 'admin@admin.com', '0000-00-00', '0000-00-00', 2, 2, 3, 'asd', 'asd', 'asd', 'asd', 'res1', 'res2', 'res3', 'res4', 'resposta2', 'sadas,asd');
 
 -- --------------------------------------------------------
 
@@ -150,7 +157,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `campanhas`
 --
 ALTER TABLE `campanhas`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `filiais`

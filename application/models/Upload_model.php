@@ -17,6 +17,11 @@
                 'sub_categoria' => $this->input->post('sub_categoria'),
                 'palavras_chave' => $this->input->post('palavras_chave'),
                 'pergunta' => $this->input->post('pergunta'),
+                'resposta1' => $this->input->post('resposta1'),
+                'resposta2' => $this->input->post('resposta2'),
+                'resposta3' => $this->input->post('resposta3'),
+                'resposta4' => $this->input->post('resposta4'),
+                'resposta_correta' => $this->input->post('resposta_correta'),
                 'filiais' => $filiais
             );
 
