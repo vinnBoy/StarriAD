@@ -39,6 +39,7 @@
       <div class="form-group">
           <input type="text" name="palavras_chave" class="form-control" placeholder="Palavras chave"  autofocus>
       </div>
+      <br>
       <div class="form-group">
           <input type="text" name="pergunta" class="form-control" placeholder="Pergunta chave"  autofocus>
       </div>
