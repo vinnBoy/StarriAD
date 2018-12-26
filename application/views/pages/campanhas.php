@@ -67,7 +67,7 @@
       <div ><br>
         <h5>Filiais participantes</h5><br>
         <?php foreach ($filiais as $filial) : ?>
-            <input type="checkbox" name="filial[]" id="<?php echo $filial['nome']; ?>" value="<?php echo $filial['nome']; ?>">
+            <input type="checkbox" name="filial[]" id="<?php echo $filial['id']; ?>" value="<?php echo $filial['nome']; ?>">
             <label for="<?php echo $filial['id']; ?>"><?php echo $filial['nome']." "; ?> </label>
         <?php endforeach;?>
       </div>
@@ -84,7 +84,7 @@
   <div class="row" >  
 
     <?php foreach($campanhas as $campanha) : ?>
-    <?php $ext = explode('.',$campanha['nome_arquivo']); ?>
+      <?php $ext = explode('.',$campanha['nome_arquivo']); ?>
       <div class="col-md-4 padding-left-10" >
         <h4><?php echo $campanha['titulo']; ?></h4>
         <label ><?php echo $campanha['descricao']; ?></label> 
