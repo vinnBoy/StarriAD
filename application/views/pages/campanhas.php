@@ -31,13 +31,19 @@
           <input type="text" name="num_cupons" class="form-control" placeholder="Número de cupons" required autofocus>
       </div>
       <div class="form-group">
-      <select class="col-md-12  form-control" name="" id="">
+      <select class="col-md-12  form-control" name="categoria" id="">
           <option type="text" name="categoria"  autofocus>Categoria</option>
+          <?php foreach ($categorias as $categoria) : ?>
+            <option type="text" name="categoria" value="<?php echo $categoria['categoria']; ?>" autofocus><?php echo $categoria['categoria']; ?></option>
+          <?php endforeach; ?>
       </select>
       </div>
       <div class="form-group">
-      <select class="col-md-12 form-control" name="" id="">
-          <option type="text" name="categoria"   autofocus>Sub-categoria</option>
+      <select class="col-md-12 form-control" name="subcategoria" id="">
+          <option type="text" name="subcategoria"   autofocus>Subcategoria</option>
+          <?php foreach ($categorias as $categoria) : ?>
+            <option type="text" name="subcategoria" value="<?php echo $categoria['subcategoria']; ?>" autofocus><?php echo $categoria['subcategoria']; ?></option>
+          <?php endforeach; ?>
       </select>
       </div>
       <div class="form-group">

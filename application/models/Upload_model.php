@@ -14,7 +14,7 @@
                 'valor_desconto' => $this->input->post('valor_desconto'),
                 'num_cupons' => $this->input->post('num_cupons'),
                 'categoria' => $this->input->post('categoria'),
-                'sub_categoria' => $this->input->post('sub_categoria'),
+                'sub_categoria' => $this->input->post('subcategoria'),
                 'palavras_chave' => $this->input->post('palavras_chave'),
                 'pergunta' => $this->input->post('pergunta'),
                 'resposta1' => $this->input->post('resposta1'),
@@ -46,6 +46,20 @@
 
             return $this->db->insert('filiais',$data);
 
+        }
+
+        public function cadastrar_categorias(){
+            $data = array(
+                'categoria' => $this->input->post('categoria'),
+                'subcategoria' => $this->input->post('subcategoria')
+            );
+
+            return $this->db->insert('categorias', $data);
+        }
+
+        public function get_categorias(){
+            $query = $this->db->get('categorias');
+            return $query->result_array();
         }
 
 

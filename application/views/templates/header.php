@@ -49,7 +49,15 @@
       <span>Home</span>
     </a>
   </li>
-  
+
+<?php if ($this->session->userdata('admin')) :?>
+  <li class="nav-item">
+    <a class="nav-link" href="../admin/Administrador">
+      <i class="fas fa-fw fa-chart-area"></i>
+      <span>Administrador</span></a>
+  </li>
+<?php endif; ?>
+
   <li class="nav-item">
     <a class="nav-link" href="../pages/campanhas">
       <i class="fas fa-fw fa-chart-area"></i>
@@ -115,6 +123,9 @@
   <?php endif; ?>
   <?php if($this->session->flashdata('email_fail')) : ?>
     <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('email_fail').'</p>'; ?>
+  <?php endif; ?>
+  <?php if($this->session->flashdata('categoria_cadastrada')) : ?>
+    <?php echo '<p class="alert alert-success">'.$this->session->flashdata('categoria_cadastrada').'</p>'; ?>
   <?php endif; ?>
   
 

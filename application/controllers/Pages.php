@@ -20,6 +20,7 @@ use PHPMailer\PHPMailer\Exception;
             $data['title'] = 'Campanhas';
             $data['campanhas'] = $this->upload_model->get_videos();
             $data['filiais'] = $this->upload_model->get_filiais();
+            $data['categorias'] = $this->upload_model->get_categorias();
             
             $this->load->view('templates/header');
             $this->load->view('pages/campanhas',$data);
@@ -196,6 +197,9 @@ use PHPMailer\PHPMailer\Exception;
             redirect('pages/filiais');      
            
         }
+
+
+        
         public function delete($id){
             // Check login
             if(!$this->session->userdata('logged_in')){
