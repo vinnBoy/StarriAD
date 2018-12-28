@@ -31,13 +31,13 @@
           <input type="text" name="num_cupons" class="form-control" placeholder="Número de cupons" required autofocus>
       </div>
       <div class="form-group">
-      <select class="col-md-12" name="" id="">
-          <option type="text" name="categoria" class="form-control" autofocus>Categoria</option>
+      <select class="col-md-12  form-control" name="" id="">
+          <option type="text" name="categoria"  autofocus>Categoria</option>
       </select>
       </div>
       <div class="form-group">
-      <select class="col-md-12" name="" id="">
-          <option type="text" name="categoria" class="form-control"  autofocus>Sub-categoria</option>
+      <select class="col-md-12 form-control" name="" id="">
+          <option type="text" name="categoria"   autofocus>Sub-categoria</option>
       </select>
       </div>
       <div class="form-group">
