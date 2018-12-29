@@ -15,10 +15,10 @@
           <textarea type="text" name="descricao" class="form-control" placeholder="Descrição"  autofocus maxlength="150"></textarea>
       </div>
       <div class="form-group">
-          <input type="text" name="data_inicio" class="form-control" placeholder="Data de início" required autofocus>
+          <input type="text" name="data_inicio" class="form-control" placeholder="Data de início (DD/MM/AAAA)" required autofocus>
       </div>
       <div class="form-group">
-          <input type="text" name="data_encerramento" class="form-control" placeholder="Data de encerramento"  autofocus>
+          <input type="text" name="data_encerramento" class="form-control" placeholder="Data de encerramento (DD/MM/AAAA)"  autofocus>
       </div>
       <div class="form-group">
           <input type="text" name="investimento" class="form-control" placeholder="Investimento (R$)" required autofocus>

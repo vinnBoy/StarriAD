@@ -22,6 +22,7 @@ use PHPMailer\PHPMailer\Exception;
             $data['filiais'] = $this->upload_model->get_filiais();
             $data['categorias'] = $this->upload_model->get_categorias();
             
+            
             $this->load->view('templates/header');
             $this->load->view('pages/campanhas',$data);
             $this->load->view('templates/footer');
@@ -147,7 +148,12 @@ use PHPMailer\PHPMailer\Exception;
                     } else {
                         move_uploaded_file($_FILES["file"]["tmp_name"],"uploads/" . $_FILES["file"]["name"]);
                         $file_name = $_FILES["file"]["name"];
-                        $this->upload_model->create_info($file_name);
+                        // Converter Data
+                        $data_enc = $this->input->post('data_encerramento');
+                        $date = str_replace('/', '-', $data_enc);
+                        $data_encerramento = date('Y-m-d', strtotime($date));
+
+                        $this->upload_model->create_info($file_name,$data_encerramento);
 
                         $filename = $getID3->analyze('uploads/'.$file_name);
                         $playtime = explode(':',$filename['playtime_string']);

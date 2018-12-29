@@ -28,6 +28,13 @@
             <label ><?php echo "Categorias: ".$campanha['categoria']."|".$campanha['sub_categoria']; ?></label><br>
             <label ><?php echo "Filiais: ".$campanha['filiais']; ?></label> <br>
             <label ><?php echo "Investimento: R$ ".$campanha['investimento']; ?></label> <br>
+            <label ><?php echo "Cupons gerados: ".$campanha['num_cupons']; ?></label> <br>
+            <label ><?php echo "Desconto por cupom: R$ ".$campanha['valor_desconto']; ?></label> <br>
+            <?php
+            $time = strtotime($campanha['data_encerramento']);
+            $myFormatForView = date("m/d/Y ", $time);
+            ?>
+            <label ><?php echo "Data de encerramento: ".$myFormatForView; ?></label> <br>
         
         <?php echo form_open('pages/delete/'.$campanha['id']); ?>
           <input type="submit" value="remover campanha" class="btn btn-danger btn-sm">

@@ -1,7 +1,7 @@
 <?php
     class Upload_model extends CI_Model{
 
-        public function create_info($file_name){
+        public function create_info($file_name,$data_encerramento){
             $filiais = implode(',', $this->input->post('filial'));
             $data = array(
                 'titulo' => $this->input->post('titulo'),
@@ -9,7 +9,7 @@
                 'nome_arquivo' => $file_name,
                 'email' => $this->session->userdata('email'),
                 'data_inicio' => $this->input->post('data_inicio'),
-                'data_encerramento' => $this->input->post('data_encerramento'),
+                'data_encerramento' => $data_encerramento,
                 'investimento' => $this->input->post('investimento'),
                 'valor_desconto' => $this->input->post('valor_desconto'),
                 'num_cupons' => $this->input->post('num_cupons'),
