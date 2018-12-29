@@ -30,6 +30,31 @@ use PHPMailer\PHPMailer\Exception;
             
         }
 
+        public function criar_campanha(){
+
+            // Check login
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            $email = $this->session->userdata('email');
+            $data['updated'] = $this->user_model->check_register($email);
+            if(empty($data['updated'])){
+                $this->session->set_flashdata('not_updated', 'Por favor, atualize seu cadastro para criar uma campanha.');
+               redirect('users/atualizar_cadastro');
+            }else{
+
+            $data['title'] = 'Criar Campanha';
+            $data['filiais'] = $this->upload_model->get_filiais();
+            $data['categorias'] = $this->upload_model->get_categorias();
+            
+            $this->load->view('templates/header');
+            $this->load->view('pages/criar_campanha',$data);
+            $this->load->view('templates/footer');
+               
+            }
+            
+        }
+
         public function home(){
             if(!$this->session->userdata('logged_in')){
                 redirect('users/login');

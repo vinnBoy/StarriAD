@@ -127,5 +127,8 @@
   <?php if($this->session->flashdata('categoria_cadastrada')) : ?>
     <?php echo '<p class="alert alert-success">'.$this->session->flashdata('categoria_cadastrada').'</p>'; ?>
   <?php endif; ?>
+  <?php if($this->session->flashdata('user_registered')) : ?>
+    <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_registered').'</p>'; ?>
+  <?php endif; ?>
   
 
