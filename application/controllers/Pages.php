@@ -109,13 +109,14 @@ use PHPMailer\PHPMailer\Exception;
             include('assets/getid3/getid3/getid3.php');
             $getID3 = new getID3();
             
-            $allowedExts = array("mp4", "MP4", "jpeg", "JPEG","png", "PNG","gif");
+            $allowedExts = array("mp4", "MP4", "jpeg", "JPEG","png", "PNG","gif","jpg");
             $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
             if ((($_FILES["file"]["type"] == "video/mp4")
             || ($_FILES["file"]["type"] == "video/MP4")
             || ($_FILES["file"]["type"] == "image/jpeg")
             || ($_FILES["file"]["type"] == "image/JPEG")
+            || ($_FILES["file"]["type"] == "image/jpg")
             || ($_FILES["file"]["type"] == "image/gif")
             || ($_FILES["file"]["type"] == "image/png")
             || ($_FILES["file"]["type"] == "image/PNG"))
