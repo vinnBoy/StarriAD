@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 29-Dez-2018 às 15:22
+-- Generation Time: 29-Dez-2018 às 22:15
 -- Versão do servidor: 5.7.23
 -- versão do PHP: 5.6.38
 
@@ -51,17 +51,16 @@ CREATE TABLE IF NOT EXISTS `campanhas` (
   `resposta_correta` varchar(255) NOT NULL,
   `filiais` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `campanhas`
 --
 
 INSERT INTO `campanhas` (`id`, `titulo`, `descricao`, `nome_arquivo`, `email`, `data_inicio`, `data_encerramento`, `investimento`, `valor_desconto`, `num_cupons`, `categoria`, `sub_categoria`, `palavras_chave`, `pergunta`, `resposta1`, `resposta2`, `resposta3`, `resposta4`, `resposta_correta`, `filiais`) VALUES
-(1, 'Russia in 15 seconds', 'asdasd', 'Russia in_15_seconds.MP4', 'admin@admin.com', '0000-00-00', '0000-00-00', 0, 0, 0, 'asdsad', '', '', '', '', '', '', '', '', ''),
 (7, 'asd', 's', 'Saving you $60+ in 15 seconds.MP4', 'vinicius.rmoraes@hotmail.com', '0000-00-00', '0000-00-00', 123, 123, 12, 'asd', 'asd', 'asd', 'asd', '', '', '', '', '', ''),
-(13, 'asdd', '', 'd25290d558bd84326dc021dfe128333b.png', 'admin@admin.com', '0000-00-00', '0000-00-00', 2, 2, 3, 'asd', 'asd', 'asd', 'asd', 'res1', 'res2', 'res3', 'res4', 'resposta2', 'sadas,asd'),
-(14, 'Campanha 01', 'Campanha', 'Saving you $60+ in 15 seconds.MP4', 'admin@admin.com', '0000-00-00', '0000-00-00', 600, 55, 5, 'Cat1', 'SubCat2', 'Keyw', 'Pergunta', 'Res1', 'Res2', 'Res3', 'Res4', 'resposta2', 'sadas,asd');
+(18, 'Campanha 01', '', 'mgs5wtso143-1443209408831.jpg', 'admin@admin.com', '0000-00-00', '2019-09-10', 600, 55, 5, 'Cat2', 'SubCat1', 'Keyw', 'Pergunta', 'Res1', 'Res2', 'Res3', 'Res4', 'resposta4', 'asd'),
+(21, 'Campanha 02', '', 'Russia in_15_seconds.MP4', 'admin@admin.com', '0000-00-00', '2019-09-10', 600, 55, 8, 'Cat1', 'SubCat1', 'Keyw', 'Pergunta', 'Res1', 'Res2', 'Res3', 'Res4', 'resposta4', 'asd');
 
 -- --------------------------------------------------------
 
