@@ -183,14 +183,14 @@ use PHPMailer\PHPMailer\Exception;
                                $mail->isSMTP();                                      // Set mailer to use SMTP
                                $mail->Host = 'smtp.googlemail.com';  // Specify main and backup SMTP servers
                                $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                               $mail->Username = 'rmoraes.vinicius@gmail.com';                 // SMTP username
-                               $mail->Password = '';                           // SMTP password
+                               $mail->Username = 'starriad2019@gmail.com';                 // SMTP username
+                               $mail->Password = 'Starri@D#';                           // SMTP password
                                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                                $mail->Port = 587;                                    // TCP port to connect to
            
                                //Recipients
-                               $mail->setFrom('rmoraes.vinicius@gmail.com', 'StarriAD');
-                               $mail->addAddress('rmoraes.vinicius@gmail.com', 'rmoraes.vinicius@gmail.com');     // Add a recipient
+                               $mail->setFrom('starriad2019@gmail.com', 'StarriAD');
+                               $mail->addAddress('starriad2019@gmail.com', 'starriad2019@gmail.com');     // Add a recipient
                               
            
                                //Content
