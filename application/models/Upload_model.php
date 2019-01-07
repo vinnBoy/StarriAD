@@ -1,7 +1,7 @@
 <?php
     class Upload_model extends CI_Model{
 
-        public function create_info($file_name){
+        public function create_info($file_name,$data_encerramento){
             $filiais = implode(',', $this->input->post('filial'));
             $data = array(
                 'titulo' => $this->input->post('titulo'),
@@ -9,14 +9,19 @@
                 'nome_arquivo' => $file_name,
                 'email' => $this->session->userdata('email'),
                 'data_inicio' => $this->input->post('data_inicio'),
-                'data_encerramento' => $this->input->post('data_encerramento'),
+                'data_encerramento' => $data_encerramento,
                 'investimento' => $this->input->post('investimento'),
                 'valor_desconto' => $this->input->post('valor_desconto'),
                 'num_cupons' => $this->input->post('num_cupons'),
                 'categoria' => $this->input->post('categoria'),
-                'sub_categoria' => $this->input->post('sub_categoria'),
+                'sub_categoria' => $this->input->post('subcategoria'),
                 'palavras_chave' => $this->input->post('palavras_chave'),
                 'pergunta' => $this->input->post('pergunta'),
+                'resposta1' => $this->input->post('resposta1'),
+                'resposta2' => $this->input->post('resposta2'),
+                'resposta3' => $this->input->post('resposta3'),
+                'resposta4' => $this->input->post('resposta4'),
+                'resposta_correta' => $this->input->post('resposta_correta'),
                 'filiais' => $filiais
             );
 
@@ -41,6 +46,20 @@
 
             return $this->db->insert('filiais',$data);
 
+        }
+
+        public function cadastrar_categorias(){
+            $data = array(
+                'categoria' => $this->input->post('categoria'),
+                'subcategoria' => $this->input->post('subcategoria')
+            );
+
+            return $this->db->insert('categorias', $data);
+        }
+
+        public function get_categorias(){
+            $query = $this->db->get('categorias');
+            return $query->result_array();
         }
 
 

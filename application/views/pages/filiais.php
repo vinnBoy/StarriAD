@@ -10,7 +10,7 @@
         <input type="text" name="nome" class="form-control" placeholder="Nome"  autofocus></input>
     </div>
     <div class="form-group">
-        <input type="text" name="cep" class="form-control" placeholder="CEP"  autofocus></input>
+        <input type="text" name="cep" class="form-control" placeholder="CEP"  id="cep" autofocus></input>
     </div>
     <div class="row">
         <div class="col">
@@ -27,13 +27,13 @@
         <input type="text" name="complemento" class="form-control" placeholder="Complemento"  autofocus></input>
     </div>
     <div class="form-group">
-        <input type="text" name="bairro" class="form-control" placeholder="Bairro"  autofocus></input>
+        <input type="text" name="bairro" class="form-control" placeholder="Bairro" id="bairro" autofocus></input>
     </div>
     <div class="form-group">
-        <input type="text" name="cidade" class="form-control" placeholder="Cidade"  autofocus></input>
+        <input type="text" name="cidade" class="form-control" placeholder="Cidade" id="cidade" autofocus></input>
     </div>
     <div class="form-group">
-        <input type="text" name="estado" class="form-control" placeholder="Estado"  autofocus></input>
+        <input type="text" name="estado" class="form-control" placeholder="Estado"  id="estado" autofocus></input>
     </div>
     <div class="form-group">
         <input type="text" name="centro_comercial" class="form-control" placeholder="Centro Comercial"  autofocus></input>

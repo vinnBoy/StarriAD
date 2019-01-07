@@ -12,6 +12,7 @@
                 'email' => $this->input->post('email'),
                 'telefone' => $this->input->post('telefone'),
                 'nome_empresa' => $this->input->post('nome_empresa'),
+                'cnpj' => $this->input->post('cnpj'),
                 'senha'=> $enc_senha,
             );
 
@@ -71,10 +72,10 @@
         }
         public function check_register($email){
             $this->db->where('email',$email);
-            $this->db->select('cnpj');
+            $this->db->select('cep');
             $query = $this->db->get('users');
             $result = $query->row();
-            return $result->cnpj;
+            return $result->cep;
 
         }
 

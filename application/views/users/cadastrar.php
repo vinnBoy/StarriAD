@@ -15,6 +15,11 @@
 
             <div class="form-group">
                 <label></label>
+                <input type="text" class="form-control input-style" name="cnpj" placeholder="CNPJ">
+            </div>
+
+            <div class="form-group">
+                <label></label>
                 <input type="email" class="form-control input-style" name="email" placeholder="E-mail">
             </div>
 

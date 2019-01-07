@@ -20,9 +20,36 @@ use PHPMailer\PHPMailer\Exception;
             $data['title'] = 'Campanhas';
             $data['campanhas'] = $this->upload_model->get_videos();
             $data['filiais'] = $this->upload_model->get_filiais();
+            $data['categorias'] = $this->upload_model->get_categorias();
+            
             
             $this->load->view('templates/header');
             $this->load->view('pages/campanhas',$data);
+            $this->load->view('templates/footer');
+               
+            }
+            
+        }
+
+        public function criar_campanha(){
+
+            // Check login
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            $email = $this->session->userdata('email');
+            $data['updated'] = $this->user_model->check_register($email);
+            if(empty($data['updated'])){
+                $this->session->set_flashdata('not_updated', 'Por favor, atualize seu cadastro para criar uma campanha.');
+               redirect('users/atualizar_cadastro');
+            }else{
+
+            $data['title'] = 'Criar Campanha';
+            $data['filiais'] = $this->upload_model->get_filiais();
+            $data['categorias'] = $this->upload_model->get_categorias();
+            
+            $this->load->view('templates/header');
+            $this->load->view('pages/criar_campanha',$data);
             $this->load->view('templates/footer');
                
             }
@@ -82,13 +109,14 @@ use PHPMailer\PHPMailer\Exception;
             include('assets/getid3/getid3/getid3.php');
             $getID3 = new getID3();
             
-            $allowedExts = array("mp4", "MP4", "jpeg", "JPEG","png", "PNG","gif");
+            $allowedExts = array("mp4", "MP4", "jpeg", "JPEG","png", "PNG","gif","jpg");
             $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
             if ((($_FILES["file"]["type"] == "video/mp4")
             || ($_FILES["file"]["type"] == "video/MP4")
             || ($_FILES["file"]["type"] == "image/jpeg")
             || ($_FILES["file"]["type"] == "image/JPEG")
+            || ($_FILES["file"]["type"] == "image/jpg")
             || ($_FILES["file"]["type"] == "image/gif")
             || ($_FILES["file"]["type"] == "image/png")
             || ($_FILES["file"]["type"] == "image/PNG"))
@@ -121,7 +149,12 @@ use PHPMailer\PHPMailer\Exception;
                     } else {
                         move_uploaded_file($_FILES["file"]["tmp_name"],"uploads/" . $_FILES["file"]["name"]);
                         $file_name = $_FILES["file"]["name"];
-                        $this->upload_model->create_info($file_name);
+                        // Converter Data
+                        $data_enc = $this->input->post('data_encerramento');
+                        $date = str_replace('/', '-', $data_enc);
+                        $data_encerramento = date('Y-m-d', strtotime($date));
+
+                        $this->upload_model->create_info($file_name,$data_encerramento);
 
                         $filename = $getID3->analyze('uploads/'.$file_name);
                         $playtime = explode(':',$filename['playtime_string']);
@@ -150,14 +183,14 @@ use PHPMailer\PHPMailer\Exception;
                                $mail->isSMTP();                                      // Set mailer to use SMTP
                                $mail->Host = 'smtp.googlemail.com';  // Specify main and backup SMTP servers
                                $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                               $mail->Username = 'rmoraes.vinicius@gmail.com';                 // SMTP username
-                               $mail->Password = '';                           // SMTP password
+                               $mail->Username = 'starriad2019@gmail.com';                 // SMTP username
+                               $mail->Password = 'Starri@D#';                           // SMTP password
                                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                                $mail->Port = 587;                                    // TCP port to connect to
            
                                //Recipients
-                               $mail->setFrom('rmoraes.vinicius@gmail.com', 'StarriAD');
-                               $mail->addAddress('rmoraes.vinicius@gmail.com', 'rmoraes.vinicius@gmail.com');     // Add a recipient
+                               $mail->setFrom('starriad2019@gmail.com', 'StarriAD');
+                               $mail->addAddress('starriad2019@gmail.com', 'starriad2019@gmail.com');     // Add a recipient
                               
            
                                //Content
@@ -196,6 +229,9 @@ use PHPMailer\PHPMailer\Exception;
             redirect('pages/filiais');      
            
         }
+
+
+        
         public function delete($id){
             // Check login
             if(!$this->session->userdata('logged_in')){

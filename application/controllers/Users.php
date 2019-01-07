@@ -96,7 +96,7 @@
                 
                 $email = $this->input->post('email');
                 $senha = md5($this->input->post('senha'));
-
+                $admin = $this->user_model->check_admin($email);
                 // Login user
                 $user_id = $this->user_model->login($email, $senha);
 
@@ -105,6 +105,7 @@
                     $user_data = array(
                         'user_id' => $user_id,
                         'email' => $email,
+                        'admin' => $admin,
                         'logged_in' => true
                     );
 

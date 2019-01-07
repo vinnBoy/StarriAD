@@ -1,75 +1,22 @@
 <div class="col-md-12 center-x">
     <h2> <?php echo $title; ?> </h2>
 </div>
- <!-- Upload de videos -->
- <?php echo form_open_multipart('pages/upload') ?>
-<div class="row center-x pt-5" >
-
-  <div class="col-md-8 center-text">
- <br>
-      
-  <h3>Crie sua nova campanha</h3><br>
-      <div class="form-group">
-          <input type="text" name="titulo" class="form-control" placeholder="Nome da campanha" required autofocus>
-      </div>
-      <div class="form-group">
-          <textarea type="text" name="descricao" class="form-control" placeholder="Descrição"  autofocus maxlength="150"></textarea>
-      </div>
-      <div class="form-group">
-          <input type="text" name="data_inicio" class="form-control" placeholder="Data de início" required autofocus>
-      </div>
-      <div class="form-group">
-          <input type="text" name="data_encerramento" class="form-control" placeholder="Data de encerramento"  autofocus>
-      </div>
-      <div class="form-group">
-          <input type="text" name="investimento" class="form-control" placeholder="Investimento (R$)" required autofocus>
-      </div>
-      <div class="form-group">
-          <input type="text" name="valor_desconto" class="form-control" placeholder="Valor do desconto (R$)"  autofocus>
-      </div>
-      <div class="form-group">
-          <input type="text" name="num_cupons" class="form-control" placeholder="Número de cupons" required autofocus>
-      </div>
-      <div class="form-group">
-          <input type="text" name="categoria" class="form-control" placeholder="Categoria"  autofocus>
-      </div>
-      <div class="form-group">
-          <input type="text" name="sub_categoria" class="form-control" placeholder="Sub-categoria"  autofocus>
-      </div>
-      <div class="form-group">
-          <input type="text" name="palavras_chave" class="form-control" placeholder="Palavras chave"  autofocus>
-      </div>
-      <div class="form-group">
-          <input type="text" name="pergunta" class="form-control" placeholder="Pergunta chave"  autofocus>
-      </div>
-      
-      <h6 class="text-center ">Selecione um arquivo para publicar</h6>
-      <div class="form-group center-x">
-        <input class="btn btn-outline-primary" type="file" name="file" id="file" />
-      </div>
-      <div ><br>
-        <h5>Filiais participantes</h5><br>
-        <?php foreach ($filiais as $filial) : ?>
-            <input type="checkbox" name="filial[]" id="<?php echo $filial['nome']; ?>" value="<?php echo $filial['nome']; ?>">
-            <label for="<?php echo $filial['id']; ?>"><?php echo $filial['nome']." "; ?> </label>
-        <?php endforeach;?>
-      </div>
-      
-      <input class="btn btn-primary btn-block mt-5 " type="submit" name="submit" value="Publicar campanha"/>
-  </div>    
+ 
+<div class="row ml-5  pt-5" >
+   <a href='criar_campanha'> <button class="btn btn-primary">Criar Campanha</button> </a>
+  
 </div>
-</form><br>
 
   <!-- Exibição de videos -->
-<h3 class="text-center center-x pt-5">Campanhas enviadas</h3>
 
-<div class="container table-active">
-  <div class="row" >  
+<div class="container table-active mt-5">
+<h3 class="text-center center-x ">Listagem de Campanhas</h3>
+  <div class="row pt-5" >  
 
     <?php foreach($campanhas as $campanha) : ?>
-    <?php $ext = explode('.',$campanha['nome_arquivo']); ?>
+      <?php $ext = explode('.',$campanha['nome_arquivo']); ?>
       <div class="col-md-4 padding-left-10" >
-        <h4><?php echo $campanha['titulo']; ?></h4>
+        <h5><?php echo $campanha['titulo']; ?></h5>
         <label ><?php echo $campanha['descricao']; ?></label> 
             <?php if ($ext['1'] == 'MP4'  ) : ?>
                 <video width="auto" height="240" controls>
@@ -81,6 +28,13 @@
             <label ><?php echo "Categorias: ".$campanha['categoria']."|".$campanha['sub_categoria']; ?></label><br>
             <label ><?php echo "Filiais: ".$campanha['filiais']; ?></label> <br>
             <label ><?php echo "Investimento: R$ ".$campanha['investimento']; ?></label> <br>
+            <label ><?php echo "Cupons gerados: ".$campanha['num_cupons']; ?></label> <br>
+            <label ><?php echo "Desconto por cupom: R$ ".$campanha['valor_desconto']; ?></label> <br>
+            <?php
+            $time = strtotime($campanha['data_encerramento']);
+            $myFormatForView = date("m/d/Y ", $time);
+            ?>
+            <label ><?php echo "Data de encerramento: ".$myFormatForView; ?></label> <br>
         
         <?php echo form_open('pages/delete/'.$campanha['id']); ?>
           <input type="submit" value="remover campanha" class="btn btn-danger btn-sm">

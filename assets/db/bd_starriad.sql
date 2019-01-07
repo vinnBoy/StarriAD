@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 19-Dez-2018 às 18:24
--- Versão do servidor: 10.1.31-MariaDB
--- PHP Version: 7.2.4
+-- Host: 127.0.0.1:3306
+-- Generation Time: 29-Dez-2018 às 15:22
+-- Versão do servidor: 5.7.23
+-- versão do PHP: 5.6.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,8 +28,9 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `campanhas`
 --
 
-CREATE TABLE `campanhas` (
-  `id` int(10) NOT NULL,
+DROP TABLE IF EXISTS `campanhas`;
+CREATE TABLE IF NOT EXISTS `campanhas` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(255) NOT NULL,
   `descricao` varchar(255) NOT NULL,
   `nome_arquivo` varchar(255) NOT NULL,
@@ -43,16 +44,46 @@ CREATE TABLE `campanhas` (
   `sub_categoria` varchar(255) NOT NULL,
   `palavras_chave` varchar(255) NOT NULL,
   `pergunta` varchar(255) NOT NULL,
-  `filiais` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `resposta1` varchar(255) NOT NULL,
+  `resposta2` varchar(255) NOT NULL,
+  `resposta3` varchar(255) NOT NULL,
+  `resposta4` varchar(255) NOT NULL,
+  `resposta_correta` varchar(255) NOT NULL,
+  `filiais` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `campanhas`
 --
 
-INSERT INTO `campanhas` (`id`, `titulo`, `descricao`, `nome_arquivo`, `email`, `data_inicio`, `data_encerramento`, `investimento`, `valor_desconto`, `num_cupons`, `categoria`, `sub_categoria`, `palavras_chave`, `pergunta`, `filiais`) VALUES
-(1, 'Russia in 15 seconds', 'asdasd', 'Russia in_15_seconds.MP4', 'admin@admin.com', '0000-00-00', '0000-00-00', 0, 0, 0, 'asdsad', '', '', '', ''),
-(7, 'asd', 's', 'Saving you $60+ in 15 seconds.MP4', 'vinicius.rmoraes@hotmail.com', '0000-00-00', '0000-00-00', 123, 123, 12, 'asd', 'asd', 'asd', 'asd', '');
+INSERT INTO `campanhas` (`id`, `titulo`, `descricao`, `nome_arquivo`, `email`, `data_inicio`, `data_encerramento`, `investimento`, `valor_desconto`, `num_cupons`, `categoria`, `sub_categoria`, `palavras_chave`, `pergunta`, `resposta1`, `resposta2`, `resposta3`, `resposta4`, `resposta_correta`, `filiais`) VALUES
+(1, 'Russia in 15 seconds', 'asdasd', 'Russia in_15_seconds.MP4', 'admin@admin.com', '0000-00-00', '0000-00-00', 0, 0, 0, 'asdsad', '', '', '', '', '', '', '', '', ''),
+(7, 'asd', 's', 'Saving you $60+ in 15 seconds.MP4', 'vinicius.rmoraes@hotmail.com', '0000-00-00', '0000-00-00', 123, 123, 12, 'asd', 'asd', 'asd', 'asd', '', '', '', '', '', ''),
+(13, 'asdd', '', 'd25290d558bd84326dc021dfe128333b.png', 'admin@admin.com', '0000-00-00', '0000-00-00', 2, 2, 3, 'asd', 'asd', 'asd', 'asd', 'res1', 'res2', 'res3', 'res4', 'resposta2', 'sadas,asd'),
+(14, 'Campanha 01', 'Campanha', 'Saving you $60+ in 15 seconds.MP4', 'admin@admin.com', '0000-00-00', '0000-00-00', 600, 55, 5, 'Cat1', 'SubCat2', 'Keyw', 'Pergunta', 'Res1', 'Res2', 'Res3', 'Res4', 'resposta2', 'sadas,asd');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `categorias`
+--
+
+DROP TABLE IF EXISTS `categorias`;
+CREATE TABLE IF NOT EXISTS `categorias` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `categoria` varchar(255) NOT NULL,
+  `subcategoria` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `categorias`
+--
+
+INSERT INTO `categorias` (`id`, `categoria`, `subcategoria`) VALUES
+(1, 'Cat1', 'SubCat1'),
+(2, 'Cat2', 'SubCat2');
 
 -- --------------------------------------------------------
 
@@ -60,8 +91,9 @@ INSERT INTO `campanhas` (`id`, `titulo`, `descricao`, `nome_arquivo`, `email`, `
 -- Estrutura da tabela `filiais`
 --
 
-CREATE TABLE `filiais` (
-  `id` int(255) NOT NULL,
+DROP TABLE IF EXISTS `filiais`;
+CREATE TABLE IF NOT EXISTS `filiais` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) NOT NULL,
   `cep` int(255) NOT NULL,
   `rua` varchar(255) NOT NULL,
@@ -71,8 +103,9 @@ CREATE TABLE `filiais` (
   `cidade` varchar(255) NOT NULL,
   `estado` varchar(255) NOT NULL,
   `centro_comercial` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `email` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `filiais`
@@ -88,8 +121,9 @@ INSERT INTO `filiais` (`id`, `nome`, `cep`, `rua`, `numero`, `complemento`, `bai
 -- Estrutura da tabela `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(10) NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) NOT NULL,
   `nome_empresa` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -108,8 +142,9 @@ CREATE TABLE `users` (
   `estado` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `termos` int(1) DEFAULT NULL,
-  `admin` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `admin` int(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `users`
@@ -118,51 +153,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `nome`, `nome_empresa`, `email`, `telefone`, `razao_social`, `cnpj`, `banco`, `agencia`, `conta`, `cep`, `rua`, `numero`, `complemento`, `bairro`, `cidade`, `estado`, `senha`, `termos`, `admin`) VALUES
 (1, 'User1', 'EmpresaNome1', 'nome@empresa.com', '1188884444', 'asds', '213', '123', '123', '123', '08021540', 'Rua Alfredo Albertini', '21', 'asd', 'Jardim São Vicente', 'São Paulo', 'SP', '81dc9bdb52d04dc20036dbd8313ed055', 1, 0),
 (3, 'Admin', 'admin', 'admin@admin.com', '0022334455', 'asdas', '4242', '5454', '515', '216', '08021540', 'Rua Alfredo Albertini', '1651', 'asd', 'Jardim São Vicente', 'São Paulo', 'SP', '21232f297a57a5a743894a0e4a801fc3', 1, 1),
-(5, 'Vinicius', 'Null', 'vinicius.rmoraes@hotmail.com', '1122222222', 'asds', '213', '123', '123', '123', '08021540', 'Rua Alfredo Albertini', '21', 'asd', 'Jardim São Vicente', 'São Paulo', 'SP', '827ccb0eea8a706c4c34a16891f84e7b', 1, 0);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `campanhas`
---
-ALTER TABLE `campanhas`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `filiais`
---
-ALTER TABLE `filiais`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `campanhas`
---
-ALTER TABLE `campanhas`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `filiais`
---
-ALTER TABLE `filiais`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+(5, 'Vinicius', 'Null', 'vinicius.rmoraes@hotmail.com', '1122222222', 'asds', '213', '123', '123', '123', '08021540', 'Rua Alfredo Albertini', '21', 'asd', 'Jardim São Vicente', 'São Paulo', 'SP', '827ccb0eea8a706c4c34a16891f84e7b', 1, 0),
+(6, 'Usuário 01', 'Empresa 01', 'usuario@empresa.com', '112222222', '', '1111111', '', '', '', '', '', '', '', '', '', '', '827ccb0eea8a706c4c34a16891f84e7b', NULL, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
