@@ -1,12 +1,14 @@
 <?php
     class Upload_model extends CI_Model{
 
-        public function create_info($file_name,$data_encerramento){
+        public function create_info($file_name,$thumb_name,$data_encerramento){
             $filiais = implode(',', $this->input->post('filial'));
+                       
             $data = array(
                 'titulo' => $this->input->post('titulo'),
                 'descricao' => $this->input->post('descricao'),
                 'nome_arquivo' => $file_name,
+                'nome_thumbnail' => $thumb_name,
                 'email' => $this->session->userdata('email'),
                 'data_inicio' => $this->input->post('data_inicio'),
                 'data_encerramento' => $data_encerramento,
