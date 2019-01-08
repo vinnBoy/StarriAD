@@ -14,17 +14,17 @@
   <div class="row pt-5" >  
 
     <?php foreach($campanhas as $campanha) : ?>
-      <?php $ext = explode('.',$campanha['nome_arquivo']); ?>
+      <?php $thumb_name = explode('.',$campanha['nome_arquivo']); ?>
       <div class="col-md-4 padding-left-10" >
         <h5><?php echo $campanha['titulo']; ?></h5>
         <label ><?php echo $campanha['descricao']; ?></label> 
-            <?php if ($ext['1'] == 'MP4'  ) : ?>
+            <!-- <?php// if ($ext['1'] == 'MP4'  ) : ?>
                 <video width="auto" height="240" controls>
-                    <source src="<?php echo base_url() .'uploads/'.$campanha['nome_arquivo']; ?>" type="video/MP4">
+                    <source src="<?php //echo base_url() .'uploads/'.$campanha['nome_arquivo']; ?>" type="video/MP4">
                 </video><br><br>
-            <?php else : ?>
-                <img width="auto" height="240" src="<?php echo base_url() .'uploads/'.$campanha['nome_arquivo']; ?>"><br><br>
-            <?php endif;?>
+            <?php// else : ?> -->
+                <img width="auto" height="240" src="<?php echo base_url() .'uploads/'.$thumb_name['0'].".jpg"; ?>"><br><br>
+            <?php// endif;?>
             <label ><?php echo "Categorias: ".$campanha['categoria']."|".$campanha['sub_categoria']; ?></label><br>
             <label ><?php echo "Filiais: ".$campanha['filiais']; ?></label> <br>
             <label ><?php echo "Investimento: R$ ".$campanha['investimento']; ?></label> <br>

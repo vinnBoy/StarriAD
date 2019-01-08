@@ -1,6 +1,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+require 'assets/vendor/autoload.php';
 
     class Pages extends CI_Controller{
 
@@ -149,12 +150,16 @@ use PHPMailer\PHPMailer\Exception;
                     } else {
                         move_uploaded_file($_FILES["file"]["tmp_name"],"uploads/" . $_FILES["file"]["name"]);
                         $file_name = $_FILES["file"]["name"];
+
+                        $name = explode('.',$file_name);
+                        $thumb_name = $name['0'].'.jpg';
+                        
                         // Converter Data
                         $data_enc = $this->input->post('data_encerramento');
                         $date = str_replace('/', '-', $data_enc);
                         $data_encerramento = date('Y-m-d', strtotime($date));
 
-                        $this->upload_model->create_info($file_name,$data_encerramento);
+                        $this->upload_model->create_info($file_name,$thumb_name, $data_encerramento);
 
                         $filename = $getID3->analyze('uploads/'.$file_name);
                         $playtime = explode(':',$filename['playtime_string']);
@@ -164,13 +169,27 @@ use PHPMailer\PHPMailer\Exception;
                         if($duracao > 15){                           
                            $this->session->set_flashdata('long_file','Por favor, envie arquivos menores que 15 segundos. Duração:' .$duracao.'s');
                             
-                           //Apagar arquivos do BD e servidor
+                           // Apagar arquivos do BD e servidor
                            $email = $this->session->userdata('email');
                            $this->upload_model->auto_delete($file_name);
                            unlink('uploads/'.$file_name);
+                           unlink('uploads/'.$thumb_name);
 
                            redirect('pages/campanhas');
-                        }else{
+                        }else{                          
+                            
+                            // Extrair imagem
+                            $ffmpeg = FFMpeg\FFMpeg::create(array(
+                                'ffmpeg.binaries'  => 'assets/vendor/ffmpeg/bin/ffmpeg.exe',
+                                'ffprobe.binaries' => 'assets/vendor/ffmpeg/bin/ffprobe.exe',
+                                'timeout'          => 3600, // The timeout for the underlying process
+                                'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
+                            ), $logger);
+                            $video = $ffmpeg->open('uploads/'.$file_name);
+                            $video
+                            ->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(1))
+                            ->save("uploads/".$thumb_name);
+
                            $this->session->set_flashdata('upload_success','Arquivo enviado com sucesso. ');
                            
                            include ('assets/PHPMailer/src/Exception.php');
@@ -238,10 +257,13 @@ use PHPMailer\PHPMailer\Exception;
                 redirect('users/login');
             }
             $nome_arquivo = $this->input->post('nome_arquivo');
-           
+            $name = explode('.',$nome_arquivo);
+            $thumb_name = $name['0'].'.jpg';
+
             $this->upload_model->delete_video($id);
             // Apaga arquivo do servidor
             unlink('uploads/'.$nome_arquivo);
+            unlink('uploads/'.$thumb_name);
 
             redirect('pages/campanhas');
             
