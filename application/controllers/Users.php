@@ -29,6 +29,11 @@
                 redirect('users/login');
             }
         }
+        public function cadastrarApp(){
+            $data = $this->input->post('senha');
+            $data->senha = md5($this->input->post('senha'));
+            return $this->user_model->cadastrar($data);
+        }
 
         public function atualizar_cadastro(){
             $email = $this->session->userdata('email');
@@ -76,6 +81,19 @@
             $email = $this->session->userdata('email');
             $this->user_model->aceitar_termos($email);
             redirect('pages/campanhas');
+        }
+        public function loginApp(){
+
+            $this->load->model("user_model");
+
+            var_dump($this->input->post());
+
+            $telefone = $_POST['telefone'];
+            $senha = md5($_POST['senha']);
+
+            $user_id = $this->user_model->loginAppModel($telefone, $senha);
+
+            var_dump($user_id);
         }
 
         public function login(){

@@ -17,7 +17,7 @@
             );
 
             // Insert User
-            $this->db->insert('users', $data );
+            return $this->db->insert('users', $data );
 
         }
 
@@ -57,6 +57,19 @@
             $result = $this->db->get('users');
             if($result->num_rows() == 1){
                 return $result->row(0)->id;
+            }else{
+                return false;
+            }
+        }
+
+        public function loginAppModel($telefone, $senha){
+            // Validate
+            $this->db->where('telefone', $telefone);
+            $this->db->where('senha', $senha);
+
+            $result = $this->db->get('users');
+            if($result->num_rows() == 1){
+                return array('success' => $result->row(0)->id);
             }else{
                 return false;
             }
