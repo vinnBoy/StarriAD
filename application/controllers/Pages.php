@@ -159,7 +159,7 @@ require 'assets/vendor/autoload.php';
                         $date = str_replace('/', '-', $data_enc);
                         $data_encerramento = date('Y-m-d', strtotime($date));
 
-                        $this->upload_model->create_info($file_name,$data_encerramento,$thumb_name);
+                        $this->upload_model->create_info($file_name,$thumb_name, $data_encerramento);
 
                         $filename = $getID3->analyze('uploads/'.$file_name);
                         $playtime = explode(':',$filename['playtime_string']);
