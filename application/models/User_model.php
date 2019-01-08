@@ -21,6 +21,20 @@
 
         }
 
+        public function cadastrarApp($data){
+            // User data array
+            $data = array(
+                'nome' => $data->nome,
+                'email' => $data->email,
+                'telefone' => $data->telefone,
+                'senha'=> $data->senha,
+            );
+
+            // Insert User
+            return $this->db->insert('users', $data );
+
+        }
+
         public function atualizar_cadastro($email){
             $data = array(
                 'nome' => $this->input->post('nome'),
@@ -71,7 +85,7 @@
             if($result->num_rows() == 1){
                 return array('success' => $result->row(0)->id);
             }else{
-                return false;
+                return  array('success' => false);;
             }
 
 
@@ -120,6 +134,21 @@
                 return false;
             }
 
+        }
+
+        public function get_campanhas_cat(){
+            $this->db->select('categoria');
+            $this->db->group_by('categoria');
+            $this->db->order_by("categoria", "asc");
+            $categorias = $this->db->get('campanhas')->result();
+            $data = array();
+            foreach ($categorias as $cat){
+                $this->db->where("categoria", $cat->categoria);
+                array_push($data,array('categorias'=>$cat->categoria,'campanhas'=>$this->db->get("campanhas")->result()));
+
+            }
+
+            return $data;
         }
 
     }

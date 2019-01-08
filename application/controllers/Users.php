@@ -30,9 +30,10 @@
             }
         }
         public function cadastrarApp(){
-            $data = $this->input->post('senha');
-            $data->senha = md5($this->input->post('senha'));
-            return $this->user_model->cadastrar($data);
+
+            $data = json_decode(file_get_contents("php://input"));
+            $data->senha = md5($data->senha);
+            return $this->user_model->cadastrarApp($data);
         }
 
         public function atualizar_cadastro(){
@@ -74,6 +75,8 @@
 
         }
 
+
+
         public function aceitar_termos(){
             if(!$this->session->userdata('logged_in')){
                 redirect('users/login');
@@ -86,14 +89,14 @@
 
             $this->load->model("user_model");
 
-            var_dump($this->input->post());
+            $data = json_decode(file_get_contents("php://input"));
 
-            $telefone = $_POST['telefone'];
-            $senha = md5($_POST['senha']);
+            $telefone = $data->telefone;
+            $senha = md5($data->senha);
 
             $user_id = $this->user_model->loginAppModel($telefone, $senha);
 
-            var_dump($user_id);
+            echo json_encode($user_id);
         }
 
         public function login(){
@@ -165,6 +168,8 @@
                 return false;
             }
         }
-
+        public function get_campanhas(){
+            echo json_encode($this->user_model->get_campanhas_cat());
+        }
         
     }
