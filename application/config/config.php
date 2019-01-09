@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/StarriAD';
+$config['base_url'] = 'http://ec2-18-228-196-248.sa-east-1.compute.amazonaws.com/StarriAD';
 
 /*
 |--------------------------------------------------------------------------
