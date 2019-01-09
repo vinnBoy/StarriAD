@@ -29,6 +29,12 @@
                 redirect('users/login');
             }
         }
+        public function cadastrarApp(){
+
+            $data = json_decode(file_get_contents("php://input"));
+            $data->senha = md5($data->senha);
+            return $this->user_model->cadastrarApp($data);
+        }
 
         public function atualizar_cadastro(){
             $email = $this->session->userdata('email');
@@ -69,6 +75,8 @@
 
         }
 
+
+
         public function aceitar_termos(){
             if(!$this->session->userdata('logged_in')){
                 redirect('users/login');
@@ -76,6 +84,19 @@
             $email = $this->session->userdata('email');
             $this->user_model->aceitar_termos($email);
             redirect('pages/campanhas');
+        }
+        public function loginApp(){
+
+            $this->load->model("user_model");
+
+            $data = json_decode(file_get_contents("php://input"));
+
+            $telefone = $data->telefone;
+            $senha = md5($data->senha);
+
+            $user_id = $this->user_model->loginAppModel($telefone, $senha);
+
+            echo json_encode($user_id);
         }
 
         public function login(){
@@ -147,6 +168,8 @@
                 return false;
             }
         }
-
+        public function get_campanhas(){
+            echo json_encode($this->user_model->get_campanhas_cat());
+        }
         
     }
