@@ -148,8 +148,9 @@ require 'assets/vendor/autoload.php';
                     if($this->form_validation->run() === FALSE){
                         redirect('pages/campanhas');
                     } else {
-                        move_uploaded_file($_FILES["file"]["tmp_name"],"uploads/" . $_FILES["file"]["name"]);
-                        $file_name = $_FILES["file"]["name"];
+                        $unique_name = uniqid().".mp4";
+                        move_uploaded_file($_FILES["file"]["tmp_name"],"uploads/" . $unique_name );
+                        $file_name = $unique_name;
 
                         $name = explode('.',$file_name);
                         $thumb_name = $name['0'].'.jpg';
