@@ -107,6 +107,22 @@
 
         }
 
+        public function createCupomModel($data){
+            date_default_timezone_set('America/Sao_Paulo');
+            $date = date('Y-m-d');
+
+            $data = array(
+                'user_id' => $data->user_id,
+                'empresa_id' => $data->empresa_id,
+                'valor' => $data->valor,
+                'status' => $data->status,
+                'datacad' => $date,
+            );
+
+            // Insert User
+            return $this->db->insert('cupom', $data );
+        }
+
         public function check_admin($email){
             $this->db->where('email',$email);
             $this->db->select('admin');

@@ -99,6 +99,17 @@
             echo json_encode($user_id);
         }
 
+        public function createCupom(){
+
+            $this->load->model("user_model");
+
+            $data = json_decode(file_get_contents("php://input"));
+
+            $response = $this->user_model->createCupomModel($data);
+
+            echo json_encode($response);
+        }
+
         public function login(){
             if($this->session->userdata('logged_in')){
                 redirect('pages/home');

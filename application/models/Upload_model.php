@@ -10,6 +10,7 @@
                 'nome_arquivo' => $file_name,
                 'nome_thumbnail' => $thumb_name,
                 'email' => $this->session->userdata('email'),
+                'empresa_id' => $this->session->userdata('user_id'),
                 'data_inicio' => $this->input->post('data_inicio'),
                 'data_encerramento' => $data_encerramento,
                 'investimento' => $this->input->post('investimento'),
