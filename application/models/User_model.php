@@ -112,10 +112,10 @@
             $date = date('Y-m-d');
 
             $data = array(
-                'user_id' => 1,
-                'empresa_id' => 3,
-                'valor' => '25',
-                'status' => 1,
+                'user_id' => $data->user_id,
+                'empresa_id' => $data->empresa_id,
+                'valor' => $data->valor,
+                'status' => $data->status,
                 'datacad' => $date,
             );
 
