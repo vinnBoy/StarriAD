@@ -119,7 +119,8 @@
                 'datacad' => $date,
             );
 
-            // Insert User
+            var_dump($data);
+
             return $this->db->insert('cupom', $data );
         }
 
