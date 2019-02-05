@@ -82,8 +82,9 @@
             $this->db->where('senha', $senha);
 
             $result = $this->db->get('users');
+            $data = $result->result();
             if($result->num_rows() == 1){
-                return array('success' => $result->row(0)->id);
+                return array('success' => $result->row(0)->id, 'id'=> $data);
             }else{
                 return  array('success' => false);;
             }
