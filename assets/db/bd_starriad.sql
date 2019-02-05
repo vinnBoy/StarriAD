@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 16-Jan-2019 às 20:46
--- Versão do servidor: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: 05-Fev-2019 às 19:19
+-- Versão do servidor: 10.1.37-MariaDB
+-- versão do PHP: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -55,8 +57,8 @@ CREATE TABLE `campanhas` (
 --
 
 INSERT INTO `campanhas` (`id`, `titulo`, `descricao`, `nome_arquivo`, `nome_thumbnail`, `email`, `data_inicio`, `data_encerramento`, `investimento`, `valor_desconto`, `num_cupons`, `categoria`, `sub_categoria`, `palavras_chave`, `pergunta`, `resposta1`, `resposta2`, `resposta3`, `resposta4`, `resposta_correta`, `filiais`) VALUES
-(7, 'asd', 's', 'Saving you $60+ in 15 seconds.MP4', '', 'vinicius.rmoraes@hotmail.com', '0000-00-00', '0000-00-00', 123, 123, 12, 'asd', 'asd', 'asd', 'asd', '', '', '', '', '', ''),
-(33, 'Campanha 1', '', '5c3f86f82bb63.mp4', '5c3f86f82bb63.jpg', 'admin@admin.com', '0000-00-00', '2019-10-10', 250, 50, 4, 'Cat1', 'SubCat1', 'Imagem', 'Pergunta', 'res1', 'Resposta 2', 'Resposta 3', 'Resposta 4', 'resposta3', 'asd');
+(35, 'Campanha 1', 'Descrição', '5c3f8bd48df10.mp4', '5c3f8bd48df10.jpg', 'admin@admin.com', '0000-00-00', '2019-10-10', 250, 50, 3, 'Cat2', 'SubCat2', 'Imagem', 'Pergunta', 'Resposta 1 ', 'Resposta 2', 'Resposta 3', 'Resposta 4', 'resposta3', 'asd'),
+(36, 'Campanha 2', 'Descrição', '5c3f8c1e34b07.mp4', '5c3f8c1e34b07.jpg', 'admin@admin.com', '0000-00-00', '2019-10-10', 200, 25, 4, 'Cat1', 'SubCat1', 'Imagem', 'Pergunta', 'Resposta 1 ', 'Resposta 2', 'Resposta 3', 'Resposta 4', 'resposta2', 'asd');
 
 -- --------------------------------------------------------
 
@@ -76,7 +78,23 @@ CREATE TABLE `categorias` (
 
 INSERT INTO `categorias` (`id`, `categoria`, `subcategoria`) VALUES
 (1, 'Cat1', 'SubCat1'),
-(2, 'Cat2', 'SubCat2');
+(2, 'Cat2', 'SubCat2'),
+(3, 'cat3', 'c');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cupom`
+--
+
+CREATE TABLE `cupom` (
+  `id` int(11) NOT NULL,
+  `valor` varchar(200) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `empresa_id` int(11) NOT NULL,
+  `datacad` varchar(200) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -162,6 +180,12 @@ ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `cupom`
+--
+ALTER TABLE `cupom`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `filiais`
 --
 ALTER TABLE `filiais`
@@ -181,22 +205,33 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `campanhas`
 --
 ALTER TABLE `campanhas`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
 --
 -- AUTO_INCREMENT for table `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `cupom`
+--
+ALTER TABLE `cupom`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `filiais`
 --
 ALTER TABLE `filiais`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
