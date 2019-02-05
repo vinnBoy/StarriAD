@@ -119,8 +119,6 @@
                 'datacad' => $date,
             );
 
-            var_dump($data);
-
             return $this->db->insert('cupom', $data );
         }
 
