@@ -182,5 +182,33 @@
         public function get_campanhas(){
             echo json_encode($this->user_model->get_campanhas_cat());
         }
-        
+        public function get_tickets(){
+            $this->load->model("user_model");
+
+            $data = json_decode(file_get_contents("php://input"));
+
+            $response = $this->user_model->getCuponsModel($data);
+
+            echo json_encode($response);
+        }
+        public function use_tickets(){
+            $this->load->model("user_model");
+
+            $data = json_decode(file_get_contents("php://input"));
+
+            $response = $this->user_model->useCuponsModel($data);
+
+            echo json_encode($response);
+        }
+
+        public function pesquisarVideo(){
+            $this->load->model("user_model");
+
+            $data = json_decode(file_get_contents("php://input"));
+
+            $response = $this->user_model->pesquisarVideoModel($data);
+
+            echo json_encode($response);
+        }
+
     }

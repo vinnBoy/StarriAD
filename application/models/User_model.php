@@ -116,10 +116,16 @@
                 'empresa_id' => $data->empresa_id,
                 'valor' => $data->valor,
                 'status' => $data->status,
-                'datacad' => $date,
+                'datacad' => date('Y-m-d', strtotime($date. ' + 2 days')),
             );
 
-            return $this->db->insert('cupom', $data );
+            $this->db->insert('cupom', $data );
+
+            $data->num_cupons -= 1;
+
+            $this->db->set("num_cupons", $this->num_cupons);
+            $this->db->where("id", $data->id);
+            return $this->db->update("campanhas");
         }
 
         public function check_admin($email){
@@ -153,6 +159,8 @@
         }
 
         public function get_campanhas_cat(){
+            date_default_timezone_set('America/Sao_Paulo');
+            $date = date('Y-m-d');
             $this->db->select('categoria');
             $this->db->group_by('categoria');
             $this->db->order_by("categoria", "asc");
@@ -160,11 +168,49 @@
             $data = array();
             foreach ($categorias as $cat){
                 $this->db->where("categoria", $cat->categoria);
+                $this->db->where("data_encerramento >= ", $date);
+                $this->db->where("num_cupons > ", 0);
                 array_push($data,array('categorias'=>$cat->categoria,'campanhas'=>$this->db->get("campanhas")->result()));
 
             }
 
             return $data;
+        }
+
+        public function getCuponsModel($data){
+
+            date_default_timezone_set('America/Sao_Paulo');
+            $date = date('Y-m-d');
+
+            $this->db->select("cupom.id, cupom.valor, users.nome");
+            $this->db->where("user_id", $data->id);
+            $this->db->where("datacad >= ", $date);
+            $this->db->where("status", 1);
+            $this->db->from('cupom');
+            $this->db->join("users", "users.id = cupom.empresa_id");
+            return $this->db->get()->result();
+
+        }
+        public function useCuponsModel($data){
+
+            $id =  uniqid();
+
+            $this->db->set("status", 2);
+            $this->db->set("codigo", $id);
+            $this->db->where("id", $data->id);
+            $this->db->update("cupom");
+
+            return $id;
+
+        }
+        public function pesquisarVideoModel($data){
+
+            $this->db->like('titulo', $data);
+            $this->db->or_like('descricao');
+            $result = $this->db->get("campanhas")->result();
+
+            return $result;
+
         }
 
     }
