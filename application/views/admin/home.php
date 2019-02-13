@@ -50,8 +50,62 @@ chart.render();
     <label><?php echo $campanha['investimento'];?></label>
     <h6>Categoria</h6>
     <label><?php echo $campanha['categoria'];?></label>
+      <br>
+      <a href="<?= base_url('users/set_destaque?id='.$campanha['id'])?>">
+        <button>Tornar Destaque</button>
+      </a>
     <hr>
   </div>
   <?php endforeach; ?>
   </div>    
-  </div>  
+  </div>
+
+<div class="container table-active ">
+    <h3 class="text-center center-x pt-5">Listagem de Destaques</h3>
+    <div class="row pt-5" >
+
+        <?php foreach ($destaques as $destaque) : ?>
+            <div class="col-md-4 center-text padding-left-10 mt-6">
+                <img width="300" height="200" src="<?= base_url() .'uploads/'.$destaque['nome_thumbnail']; ?>">
+                <br><br>
+                <h6>Nome da campanha</h6>
+                <label><?php echo $destaque['titulo'];?></label>
+                <h6>Descrição</h6>
+                <label><?php echo $destaque['descricao'];?></label>
+                <h6>Email</h6>
+                <label><?php echo $destaque['email'];?></label>
+                <br>
+                <a href="<?= base_url('users/delete_destaque?id='.$destaque['destaques_id'])?>">
+                    <button>Tirar destaque</button>
+                </a>
+                <hr>
+
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+
+<div class="container table-active ">
+    <h3 class="text-center center-x pt-5">Ranking</h3>
+    <div class="row pt-5" >
+
+        <?php foreach ($users as $key=>$user) : ?>
+            <div class="col-md-4 center-text padding-left-10 mt-6">
+                <h3>#<?=$key + 1?> </h3>
+                <h6>Nome</h6>
+                <label><?php echo $user['nome'];?></label>
+                <h6>Empresa</h6>
+                <label><?php echo $user['nome_empresa'];?></label>
+                <h6>Pontos</h6>
+                <label><?php echo $user['pontos'];?></label>
+                <h6>Email</h6>
+                <label><?php echo $user['email'];?></label>
+                <br>
+
+                <hr>
+
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>

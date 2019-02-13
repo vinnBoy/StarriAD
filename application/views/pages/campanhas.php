@@ -18,13 +18,8 @@
       <div class="col-md-4 padding-left-10" >
         <h5><?php echo $campanha['titulo']; ?></h5>
         <label ><?php echo $campanha['descricao']; ?></label> 
-            <!-- <?php// if ($ext['1'] == 'MP4'  ) : ?>
-                <video width="auto" height="240" controls>
-                    <source src="<?php //echo base_url() .'uploads/'.$campanha['nome_arquivo']; ?>" type="video/MP4">
-                </video><br><br>
-            <?php// else : ?> -->
+
                 <img width="auto" height="240" src="<?php echo base_url() .'uploads/'.$thumb_name['0'].".jpg"; ?>"><br><br>
-            <?php// endif;?>
             <label ><?php echo "Categorias: ".$campanha['categoria']."|".$campanha['sub_categoria']; ?></label><br>
             <label ><?php echo "Filiais: ".$campanha['filiais']; ?></label> <br>
             <label ><?php echo "Investimento: R$ ".$campanha['investimento']; ?></label> <br>
@@ -35,9 +30,13 @@
             $myFormatForView = date("m/d/Y ", $time);
             ?>
             <label ><?php echo "Data de encerramento: ".$myFormatForView; ?></label> <br>
+          <a href="<?= base_url('pages/cupons?id='.$campanha['id'])?>">
+              <button>Cupons</button>
+          </a>
+          <br>
         
-        <?php echo form_open('pages/delete/'.$campanha['id']); ?>
-          <input type="submit" value="remover campanha" class="btn btn-danger btn-sm">
+        <?php echo form_open('pages/editarCampanha?id='.$campanha['id']); ?>
+          <input type="submit" value="Editar" class="btn btn-danger btn-sm">
           <input type="hidden" name="nome_arquivo" value="<?php echo $campanha['nome_arquivo']; ?>">
         </form> <br><br> 
       </div>
@@ -45,7 +44,7 @@
     <?php endforeach; ?>
 
     </div>    
-  </div>  
+  </div>
 
   </div>
       <!-- /.content-wrapper -->

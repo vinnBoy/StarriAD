@@ -14,6 +14,8 @@
             $this->form_validation->set_rules('email','Email', 'required|callback_check_email_exists');
             $this->form_validation->set_rules('senha','Senha', 'required');
             $this->form_validation->set_rules('senha2','Confirmar Senha', 'matches[senha]');
+            $this->form_validation->set_rules('termos','Termos de uso', 'required');
+
 
             if($this ->form_validation->run() === FALSE){
                 $this->load->view('templates/header');
@@ -210,5 +212,25 @@
 
             echo json_encode($response);
         }
+        public function set_destaque(){
+            $this->load->model("user_model");
+
+            $data = $_GET["id"];
+
+            $this->user_model->set_destaqueModel($data);
+
+            redirect("pages/home");
+        }
+
+        public function delete_destaque(){
+            $this->load->model("user_model");
+
+            $data = $_GET["id"];
+
+            $this->user_model->delete_destaqueModel($data);
+
+            redirect("pages/home");
+        }
+
 
     }

@@ -75,6 +75,11 @@
       <i class="fas fa-fw fa-chart-area"></i>
       <span>Filiais</span></a>
   </li>
+    <li class="nav-item">
+        <a class="nav-link" href="../pages/cupons">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Cupons</span></a>
+    </li>
 
   <li class="nav-item">
     <a class="nav-link" href="../pages/termos">

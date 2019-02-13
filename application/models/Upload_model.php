@@ -31,6 +31,32 @@
             return $this->db->insert('campanhas',$data);
 
         }
+        public function edite_info($data_encerramento){
+
+            $data = array(
+                'titulo' => $this->input->post('titulo'),
+                'descricao' => $this->input->post('descricao'),
+                'email' => $this->session->userdata('email'),
+                'empresa_id' => $this->session->userdata('user_id'),
+                'data_inicio' => $this->input->post('data_inicio'),
+                'data_encerramento' => $data_encerramento,
+                'investimento' => $this->input->post('investimento'),
+                'valor_desconto' => $this->input->post('valor_desconto'),
+                'num_cupons' => $this->input->post('num_cupons'),
+                'categoria' => $this->input->post('categoria'),
+                'sub_categoria' => $this->input->post('subcategoria'),
+                'palavras_chave' => $this->input->post('palavras_chave'),
+                'pergunta' => $this->input->post('pergunta'),
+                'resposta1' => $this->input->post('resposta1'),
+                'resposta2' => $this->input->post('resposta2'),
+                'resposta3' => $this->input->post('resposta3'),
+                'resposta4' => $this->input->post('resposta4'),
+                'resposta_correta' => $this->input->post('resposta_correta'),
+            );
+            $this->db->where("id", $this->input->post('id'));
+            return $this->db->update('campanhas',$data);
+
+        }
 
         
         public function criar_filial($file_name){
@@ -64,7 +90,11 @@
             $query = $this->db->get('categorias');
             return $query->result_array();
         }
-
+        public function get_ranking(){
+            $this->db->order_by("pontos", "desc");
+            $query = $this->db->get('users');
+            return $query->result_array();
+        }
 
         public function get_videos(){
             $email = $this->session->userdata('email');
@@ -77,7 +107,19 @@
             $query = $this->db->get('campanhas');
             return $query->result_array();
         }
+        public function get_destaques(){
+            $this->db->from("destaques");
+            $this->db->join("campanhas","campanhas.id = destaques.campanha_id");
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+        public function get_campamnha($id){
+            $this->db->where('id',$id);
+            $query = $this->db->get('campanhas');
+            $result = $query->result_array()[0];
+            return $result;
 
+        }
         public function get_filiais(){
             $email = $this->session->userdata('email');
             $this->db->where('email',$email);

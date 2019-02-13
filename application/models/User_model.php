@@ -136,6 +136,7 @@
             return $result->admin;
 
         }
+
         // Check username's existence
         public function check_telefone_exists($telefone){
             $query= $this->db->get_where('users', array('telefone' => $telefone));
@@ -191,6 +192,14 @@
             return $this->db->get()->result();
 
         }
+
+        public function getAllCuponsModel(){
+            $this->db->select("cupom.id, cupom.valor, users.nome, cupom.codigo");
+            $this->db->where("empresa_id", $this->session->userdata('user_id'));
+            $this->db->from('cupom');
+            $this->db->join("users", "users.id = cupom.user_id");
+            return $this->db->get()->resultw();
+        }
         public function useCuponsModel($data){
 
             $id =  uniqid();
@@ -201,6 +210,22 @@
             $this->db->update("cupom");
 
             return $id;
+
+        }
+        public function set_destaqueModel($data){
+
+
+            $this->db->set("campanha_id", $data);
+            $return = $this->db->insert("destaques");
+
+            return $return;
+
+        }
+        public function delete_destaqueModel($data){
+
+            $return = $this->db->delete('destaques', array('destaques_id' => $data));
+
+            return $return;
 
         }
         public function pesquisarVideoModel($data){
