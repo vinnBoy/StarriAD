@@ -102,7 +102,6 @@ chart.render();
                 <h6>Email</h6>
                 <label><?php echo $user['email'];?></label>
                 <br>
-
                 <hr>
 
             </div>
