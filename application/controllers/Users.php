@@ -208,10 +208,58 @@
 
             $data = json_decode(file_get_contents("php://input"));
 
-            $response = $this->user_model->pesquisarVideoModel($data);
+            $response = $this->user_model->pesquisarVideoModel($data->text);
 
             echo json_encode($response);
         }
+        public function get_destaque(){
+            $this->load->model("upload_model");
+
+            $response = $this->upload_model->get_destaques();
+
+            echo json_encode($response);
+        }
+        public function denuncia()
+        {
+            $this->load->model("upload_model");
+
+            $data = json_decode(file_get_contents("php://input"));
+
+            include('assets/PHPMailer/src/Exception.php');
+            include('assets/PHPMailer/src/PHPMailer.php');
+            include('assets/PHPMailer/src/SMTP.php');
+
+            $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+            try {
+                //Server settings
+                $mail->isSMTP();                                      // Set mailer to use SMTP
+                $mail->Host = 'smtp.googlemail.com';  // Specify main and backup SMTP servers
+                $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                $mail->Username = 'starriad2019@gmail.com';                 // SMTP username
+                $mail->Password = 'Starri@D#';                           // SMTP password
+                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                $mail->Port = 587;                                    // TCP port to connect to
+
+                //Recipients
+                $mail->setFrom('starriad2019@gmail.com', 'StarriAD');
+                $mail->addAddress('starriad2019@gmail.com', 'starriad2019@gmail.com');     // Add a recipient
+
+
+                //Content
+                $mail->isHTML(true);                                  // Set email format to HTML
+                $mail->Subject = 'Denuncia na campanha';
+                $mail->Body = 'A campanha ' . $data->titulo . ' recebeu uma denuncia do usuario com o codigo ' . $data->username . " e o motivo da denuncia é: " . $data.text;
+                $mail->AltBody = '';
+
+                $mail->send();
+
+            } catch (Exception $e) {
+                echo json_encode('email_fail', 'E-mail não enviado. ' . $mail->ErrorInfo);
+            }
+
+            echo json_encode(true);
+        }
+
         public function set_destaque(){
             $this->load->model("user_model");
 
@@ -231,6 +279,7 @@
 
             redirect("pages/home");
         }
+
 
 
     }

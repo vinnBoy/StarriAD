@@ -121,7 +121,7 @@
 
             $this->db->insert('cupom', $data );
 
-            $data->num_cupons -= 1;
+            $data->num_cupons = (int)$data->num_cupons - 1;
 
             $this->db->set("num_cupons", $this->num_cupons);
             $this->db->where("id", $data->id);
@@ -231,7 +231,9 @@
         public function pesquisarVideoModel($data){
 
             $this->db->like('titulo', $data);
-            $this->db->or_like('descricao');
+            $this->db->or_like('descricao', $data);
+            $this->db->or_like('u.nome', $data);
+            $this->db->join("users as u", "u.id = campanhas.empresa_id");
             $result = $this->db->get("campanhas")->result();
 
             return $result;
