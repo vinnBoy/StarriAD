@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$config['base_url'] = 'http://localhost/StarriAD';
+$config['base_url'] = 'http://ec2-18-231-116-5.sa-east-1.compute.amazonaws.com/StarriAD';
 
 
 /*
