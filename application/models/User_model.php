@@ -198,7 +198,7 @@
             $this->db->where("empresa_id", $this->session->userdata('user_id'));
             $this->db->from('cupom');
             $this->db->join("users", "users.id = cupom.user_id");
-            return $this->db->get()->resultw();
+            return $this->db->get()->result();
         }
         public function useCuponsModel($data){
 
