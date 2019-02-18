@@ -123,7 +123,7 @@
 
             $data->num_cupons = (int)$data->num_cupons - 1;
 
-            $this->db->set("num_cupons", $this->num_cupons);
+            $this->db->set("num_cupons", $data->num_cupons);
             $this->db->where("id", $data->id);
             return $this->db->update("campanhas");
         }

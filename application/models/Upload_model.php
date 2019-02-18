@@ -31,14 +31,14 @@
             return $this->db->insert('campanhas',$data);
 
         }
-        public function edite_info($data_encerramento){
+        public function edite_info($data_encerramento, $data_inicio){
 
             $data = array(
                 'titulo' => $this->input->post('titulo'),
                 'descricao' => $this->input->post('descricao'),
                 'email' => $this->session->userdata('email'),
                 'empresa_id' => $this->session->userdata('user_id'),
-                'data_inicio' => $this->input->post('data_inicio'),
+                'data_inicio' => $data_inicio,
                 'data_encerramento' => $data_encerramento,
                 'investimento' => $this->input->post('investimento'),
                 'valor_desconto' => $this->input->post('valor_desconto'),
@@ -132,6 +132,18 @@
             $this->db->where('id',$id);
             $this->db->delete('campanhas');
             return true;  
+
+        }
+
+        public function indicarModel($id){
+
+            $this->db->where('id',$id);
+            $response = $this->db->get('users')->result();
+
+            $pontos = $response[0]->pontos + 25;
+
+            $this->db->where('id',$id);
+            return $this->db->update("users", array("pontos" => $pontos));
 
         }
 

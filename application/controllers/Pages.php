@@ -259,7 +259,11 @@ require 'assets/vendor/autoload.php';
             $date = str_replace('/', '-', $data_enc);
             $data_encerramento = date('Y-m-d', strtotime($date));
 
-            $this->upload_model->edite_info($data_encerramento);
+            $data_ini = $this->input->post('data_inicio');
+            $date = str_replace('/', '-', $data_ini);
+            $data_inicio = date('Y-m-d', strtotime($date));
+
+            $this->upload_model->edite_info($data_encerramento, $data_inicio);
             redirect('pages/campanhas');
 
         }

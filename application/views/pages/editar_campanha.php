@@ -13,13 +13,13 @@
             <input type="text" name="titulo" class="form-control" placeholder="Nome da campanha" required autofocus value="<?=$campanha['titulo']?>">
         </div>
         <div class="form-group">
-            <textarea type="text" name="descricao" value="<?=$campanha['descricao']?>" class="form-control" placeholder="Descrição"  autofocus maxlength="150"></textarea>
+            <textarea type="text" name="descricao"  class="form-control" placeholder="Descrição"  autofocus maxlength="150"><?=$campanha['descricao']?></textarea>
         </div>
         <div class="form-group">
-            <input type="text" name="data_inicio" value="<?=$campanha['data_inicio']?>" class="form-control" placeholder="Data de início (DD/MM/AAAA)" required autofocus>
+            <input type="text" id="data_inicio" name="data_inicio" value="<?=$campanha['data_inicio']?>" class="form-control" placeholder="Data de início (DD/MM/AAAA)" required autofocus>
         </div>
         <div class="form-group">
-            <input type="text" name="data_encerramento" value="<?=$campanha['data_encerramento']?>" class="form-control" placeholder="Data de encerramento (DD/MM/AAAA)"  autofocus>
+            <input type="text" id="data_encerramento" name="data_encerramento" value="<?=$campanha['data_encerramento']?>" class="form-control" placeholder="Data de encerramento (DD/MM/AAAA)"  autofocus>
         </div>
         <div class="form-group">
             <input type="text" name="investimento" value="<?=$campanha['investimento']?>" class="form-control" placeholder="Investimento (R$)" required autofocus>
@@ -46,7 +46,7 @@
             <select class="col-md-12 form-control" name="subcategoria" id="">
                 <option type="text" name="subcategoria"   autofocus>Subcategoria</option>
                 <?php foreach ($categorias as $categoria) : ?>
-                <?php if($campanha['subcategoria'] == $categoria['subcategoria']){ ?>
+                <?php if($campanha['sub_categoria'] == $categoria['subcategoria']){ ?>
                         <option type="text" name="subcategoria" value="<?php echo $categoria['subcategoria']; ?>" selected autofocus><?php echo $categoria['subcategoria']; ?></option>
                 <?php }else{ ?>
                         <option type="text" name="subcategoria" value="<?php echo $categoria['subcategoria']; ?>" autofocus><?php echo $categoria['subcategoria']; ?></option>

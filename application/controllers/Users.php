@@ -260,6 +260,52 @@
             echo json_encode(true);
         }
 
+        public function indicar()
+        {
+            $this->load->model("upload_model");
+
+            $data = json_decode(file_get_contents("php://input"));
+
+            include('assets/PHPMailer/src/Exception.php');
+            include('assets/PHPMailer/src/PHPMailer.php');
+            include('assets/PHPMailer/src/SMTP.php');
+
+            $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+            try {
+                //Server settings
+                $mail->isSMTP();                                      // Set mailer to use SMTP
+                $mail->Host = 'smtp.googlemail.com';  // Specify main and backup SMTP servers
+                $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                $mail->Username = 'starriad2019@gmail.com';                 // SMTP username
+                $mail->Password = 'Starri@D#';                           // SMTP password
+                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                $mail->Port = 587;                                    // TCP port to connect to
+
+                //Recipients
+                $mail->setFrom('starriad2019@gmail.com', 'StarriAD');
+                $mail->addAddress('starriad2019@gmail.com', 'starriad2019@gmail.com');     // Add a recipient
+
+
+                //Content
+                $mail->isHTML(true);                                  // Set email format to HTML
+                $mail->Subject = 'Indicação';
+                $mail->Body = "Indicação do usuário ". $data->user_id. " o nome é ".$data->nome. " e o telefone é ".$data->numero;
+                $mail->AltBody = '';
+
+                $mail->send();
+
+
+
+            } catch (Exception $e) {
+                echo json_encode('email_fail', 'E-mail não enviado. ' . $mail->ErrorInfo);
+            }
+
+            $this->upload_model->indicarModel($data->user_id);
+
+
+            echo json_encode(true);
+        }
+
         public function set_destaque(){
             $this->load->model("user_model");
 

@@ -12,7 +12,7 @@
           <input type="text" name="titulo" class="form-control" placeholder="Nome da campanha" required autofocus>
       </div>
       <div class="form-group">
-          <textarea type="text" name="descricao" class="form-control" placeholder="Descrição"  autofocus maxlength="150"></textarea>
+          <textarea type="text" name="descricao" class="form-control" placeholder="Descrição" autofocus maxlength="150"></textarea>
       </div>
       <div class="form-group">
           <input type="text" name="data_inicio" class="form-control" placeholder="Data de início (DD/MM/AAAA)" required autofocus>
