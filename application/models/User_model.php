@@ -117,6 +117,8 @@
                 'valor' => $data->valor,
                 'status' => $data->status,
                 'datacad' => date('Y-m-d', strtotime($date. ' + 2 days')),
+                'campanha_id' => $data->id,
+
             );
 
             $this->db->insert('cupom', $data );
@@ -183,19 +185,21 @@
             date_default_timezone_set('America/Sao_Paulo');
             $date = date('Y-m-d');
 
-            $this->db->select("cupom.id, cupom.valor, users.nome");
+            $this->db->select("cupom.id, cupom.valor, users.nome, campanhas.nome_thumbnail");
             $this->db->where("user_id", $data->id);
             $this->db->where("datacad >= ", $date);
             $this->db->where("status", 1);
             $this->db->from('cupom');
             $this->db->join("users", "users.id = cupom.empresa_id");
+            $this->db->join("campanhas", "campanhas.id = cupom.campanha_id");
             return $this->db->get()->result();
 
         }
 
-        public function getAllCuponsModel(){
+        public function getAllCuponsModel($id){
             $this->db->select("cupom.id, cupom.valor, users.nome, cupom.codigo");
             $this->db->where("empresa_id", $this->session->userdata('user_id'));
+            $this->db->where("campanha_id",$id);
             $this->db->from('cupom');
             $this->db->join("users", "users.id = cupom.user_id");
             return $this->db->get()->result();

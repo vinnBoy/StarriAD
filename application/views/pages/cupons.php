@@ -15,14 +15,14 @@
 
 
         <?php foreach($cupons as $cupom) : ?>
-            <div class="col-md-4 padding-left-10" >
+            <div class="col-md-4 padding-left-10 pb-5" >
                 <h5><?php echo $cupom->nome; ?></h5>
                 <label >Valor: R$<?php echo $cupom->valor; ?>,00</label><br>
                 <label >Codigo: <?php echo $cupom->codigo; ?></label>
+            </div>
 
         <?php endforeach; ?>
 
-    </div>
 </div>
 
 </div>

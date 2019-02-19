@@ -99,7 +99,7 @@ require 'assets/vendor/autoload.php';
                 redirect('users/login');
             }
             $data['title'] = 'Cupons';
-            $data['cupons'] = $this->user_model->getAllCuponsModel();
+            $data['cupons'] = $this->user_model->getAllCuponsModel($_GET["id"]);
 
 //            var_dump($data["cupons"]);
 
