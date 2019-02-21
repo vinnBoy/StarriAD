@@ -57,6 +57,20 @@
             return $this->db->update('campanhas',$data);
 
         }
+        public function create_patricio($data_encerramento, $data_inicio, $file){
+
+            $data = array(
+                'nome' => $this->input->post('titulo'),
+                'descricao' => $this->input->post('descricao'),
+                'data_inicio' => $data_inicio,
+                'data_encerramento' => $data_encerramento,
+                'file' => $file,
+
+            );
+            return $this->db->insert('patrocinio',$data);
+
+        }
+
 
         
         public function criar_filial($file_name){
@@ -91,9 +105,30 @@
             return $query->result_array();
         }
         public function get_ranking(){
+            $query = $this->db->get('patrocinio');
+            return $query->result_array();
+        }
+        public function get_ranking_user($data){
+            $this->db->where("pp.patrocinio_id", $data->patrocinio_id);
             $this->db->order_by("pontos", "desc");
+            $this->db->join("patrocinio_participantes as pp", "pp.user_id = users.id");
             $query = $this->db->get('users');
             return $query->result_array();
+        }
+
+        public function get_ranking_user_web($data){
+            $this->db->where("pp.patrocinio_id", $data);
+            $this->db->order_by("pontos", "desc");
+            $this->db->join("patrocinio_participantes as pp", "pp.user_id = users.id");
+            $query = $this->db->get('users');
+            return $query->result_array();
+        }
+
+        public function get_data_user($data){
+
+            $this->db->where("id", $data->id);
+            $query = $this->db->get('users');
+            return $query->result();
         }
 
         public function get_videos(){

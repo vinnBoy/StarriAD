@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
 --
 -- Host: localhost    Database: bd_starriad
 -- ------------------------------------------------------
--- Server version	5.6.35
+-- Server version	5.7.25-0ubuntu0.16.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -99,6 +99,7 @@ CREATE TABLE `cupom` (
   `datacad` varchar(200) NOT NULL,
   `status` int(11) NOT NULL,
   `codigo` varchar(45) DEFAULT NULL,
+  `campanha_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -109,7 +110,7 @@ CREATE TABLE `cupom` (
 
 LOCK TABLES `cupom` WRITE;
 /*!40000 ALTER TABLE `cupom` DISABLE KEYS */;
-INSERT INTO `cupom` VALUES (1,'25',1,3,'2019-02-11',2,'5c6070df16cef');
+INSERT INTO `cupom` VALUES (1,'25',1,3,'2019-02-11',2,'5c6070df16cef',NULL);
 /*!40000 ALTER TABLE `cupom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +125,7 @@ CREATE TABLE `destaques` (
   `destaques_id` int(11) NOT NULL AUTO_INCREMENT,
   `campanha_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`destaques_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +134,6 @@ CREATE TABLE `destaques` (
 
 LOCK TABLES `destaques` WRITE;
 /*!40000 ALTER TABLE `destaques` DISABLE KEYS */;
-INSERT INTO `destaques` VALUES (4,36);
 /*!40000 ALTER TABLE `destaques` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,6 +168,59 @@ LOCK TABLES `filiais` WRITE;
 /*!40000 ALTER TABLE `filiais` DISABLE KEYS */;
 INSERT INTO `filiais` VALUES (1,'sadas',123,'sda',213,'sad','asd','asd','asd','asd','admin@admin.com'),(2,'asd',21251,'asddas',21,'asd','asd','asd','asd','asd','admin@admin.com');
 /*!40000 ALTER TABLE `filiais` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `patrocinio`
+--
+
+DROP TABLE IF EXISTS `patrocinio`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `patrocinio` (
+  `patrocinio_id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) DEFAULT NULL,
+  `descricao` varchar(800) DEFAULT NULL,
+  `data_inicio` date DEFAULT NULL,
+  `data_encerramento` date DEFAULT NULL,
+  `file` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`patrocinio_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `patrocinio`
+--
+
+LOCK TABLES `patrocinio` WRITE;
+/*!40000 ALTER TABLE `patrocinio` DISABLE KEYS */;
+INSERT INTO `patrocinio` VALUES (1,'teste','testestestestes','2019-02-21','2019-02-22','5c6dd4dae9d66.jpg'),(2,'teste','testestestestes','2019-02-23','2019-02-24','5c6dd4fba657e.jpg');
+/*!40000 ALTER TABLE `patrocinio` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `patrocinio_participantes`
+--
+
+DROP TABLE IF EXISTS `patrocinio_participantes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `patrocinio_participantes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `patrocinio_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `patrocinio_participantes`
+--
+
+LOCK TABLES `patrocinio_participantes` WRITE;
+/*!40000 ALTER TABLE `patrocinio_participantes` DISABLE KEYS */;
+INSERT INTO `patrocinio_participantes` VALUES (14,1,1),(15,1,3),(16,1,5),(17,1,6);
+/*!40000 ALTER TABLE `patrocinio_participantes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -222,4 +275,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-13 10:49:04
+-- Dump completed on 2019-02-21 18:42:05
