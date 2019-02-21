@@ -335,7 +335,7 @@ require 'assets/vendor/autoload.php';
                         $data_encerramento = date('Y-m-d', strtotime($date));
 
                         // Converter Data
-                        $data_inicio = $this->input->post('data_encerramento');
+                        $data_inicio = $this->input->post('data_inicio');
                         $date = str_replace('/', '-', $data_inicio);
                         $data_inicio = date('Y-m-d', strtotime($date));
 

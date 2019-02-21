@@ -108,6 +108,19 @@
             $query = $this->db->get('patrocinio');
             return $query->result_array();
         }
+        public function get_ranking_user(){
+            $this->db->order_by("pontos", "desc");
+            $this->db->join("patrocinio_participantes as pp", "pp.user_id = users.id");
+            $query = $this->db->get('users');
+            return $query->result_array();
+        }
+
+        public function get_data_user($data){
+
+            $this->db->where("id", $data->id);
+            $query = $this->db->get('users');
+            return $query->result();
+        }
 
         public function get_videos(){
             $email = $this->session->userdata('email');

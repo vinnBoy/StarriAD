@@ -40,7 +40,36 @@
 
         public function getPatrocinio(){
 
+
             $response = $this->user_model->getPatrocinioModel();
+
+            echo json_encode($response);
+        }
+        public function participarPatrocinio(){
+
+            $data = json_decode(file_get_contents("php://input"));
+            $response = $this->user_model->participarPatrocinioModel($data);
+
+            echo json_encode($response);
+        }
+
+        public function userDataRanking(){
+
+            $data = json_decode(file_get_contents("php://input"));
+
+
+
+            $response['user'] = $this->upload_model->get_data_user($data)[0];
+            $response['ranking'] = $this->upload_model->get_ranking_user();
+
+            echo json_encode($response);
+
+        }
+
+        public function getParticipo(){
+
+            $data = json_decode(file_get_contents("php://input"));
+            $response = $this->user_model->getParticipoModel($data);
 
             echo json_encode($response);
         }
