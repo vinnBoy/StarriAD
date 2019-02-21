@@ -220,7 +220,14 @@
 
         }
 
-        public function getAllCuponsModel($id){
+        public function getAllCuponsModel(){
+            $this->db->select("cupom.id, cupom.valor, users.nome, cupom.codigo");
+            $this->db->where("empresa_id", $this->session->userdata('user_id'));
+            $this->db->from('cupom');
+            $this->db->join("users", "users.id = cupom.user_id");
+            return $this->db->get()->result();
+        }
+        public function getAllCuponsCampModel($id){
             $this->db->select("cupom.id, cupom.valor, users.nome, cupom.codigo");
             $this->db->where("empresa_id", $this->session->userdata('user_id'));
             $this->db->where("campanha_id",$id);
