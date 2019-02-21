@@ -38,6 +38,13 @@
             return $this->user_model->cadastrarApp($data);
         }
 
+        public function getPatrocinio(){
+
+            $response = $this->user_model->getPatrocinioModel();
+
+            echo json_encode($response);
+        }
+
         public function atualizar_cadastro(){
             $email = $this->session->userdata('email');
             

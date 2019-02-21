@@ -35,6 +35,14 @@
 
         }
 
+        public function getPatrocinioModel(){
+            date_default_timezone_set('America/Sao_Paulo');
+            $date = date('Y-m-d');
+            $this->db->where("data_inicio <=", $date);
+            $this->db->where("data_encerramento >=", $date);
+            return $this->db->get("patrocinio")->return();
+        }
+
         public function atualizar_cadastro($email){
             $data = array(
                 'nome' => $this->input->post('nome'),

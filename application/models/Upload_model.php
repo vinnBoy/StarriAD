@@ -57,6 +57,20 @@
             return $this->db->update('campanhas',$data);
 
         }
+        public function create_patricio($data_encerramento, $data_inicio, $file){
+
+            $data = array(
+                'nome' => $this->input->post('titulo'),
+                'descricao' => $this->input->post('descricao'),
+                'data_inicio' => $data_inicio,
+                'data_encerramento' => $data_encerramento,
+                'file' => $file,
+
+            );
+            return $this->db->insert('patrocinio',$data);
+
+        }
+
 
         
         public function criar_filial($file_name){
@@ -91,8 +105,7 @@
             return $query->result_array();
         }
         public function get_ranking(){
-            $this->db->order_by("pontos", "desc");
-            $query = $this->db->get('users');
+            $query = $this->db->get('patrocinio');
             return $query->result_array();
         }
 
