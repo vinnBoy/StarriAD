@@ -60,7 +60,7 @@
 
 
             $response['user'] = $this->upload_model->get_data_user($data)[0];
-            $response['ranking'] = $this->upload_model->get_ranking_user();
+            $response['ranking'] = $this->upload_model->get_ranking_user($data);
 
             echo json_encode($response);
 

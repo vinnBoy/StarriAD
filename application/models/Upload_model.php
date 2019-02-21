@@ -108,7 +108,16 @@
             $query = $this->db->get('patrocinio');
             return $query->result_array();
         }
-        public function get_ranking_user(){
+        public function get_ranking_user($data){
+            $this->db->where("pp.patrocinio_id", $data->patrocinio_id);
+            $this->db->order_by("pontos", "desc");
+            $this->db->join("patrocinio_participantes as pp", "pp.user_id = users.id");
+            $query = $this->db->get('users');
+            return $query->result_array();
+        }
+
+        public function get_ranking_user_web($data){
+            $this->db->where("pp.patrocinio_id", $data);
             $this->db->order_by("pontos", "desc");
             $this->db->join("patrocinio_participantes as pp", "pp.user_id = users.id");
             $query = $this->db->get('users');

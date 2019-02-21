@@ -374,6 +374,19 @@ require 'assets/vendor/autoload.php';
             
 
         }
+
+        public function verPatrocinio(){
+
+
+            $data["title"] = "Participantes";
+            $data["patrocinios"] = $this->upload_model->get_ranking_user_web($_GET['id']);
+
+            $this->load->view('templates/header');
+            $this->load->view('pages/participantes',$data);
+            $this->load->view('templates/footer');
+
+        }
+
         public function editarCampanha(){
 
             // Check login

@@ -103,6 +103,9 @@ chart.render();
                 <h6>Data encerramento</h6>
                 <label><?php echo $user['data_encerramento'];?></label>
                 <br>
+                <a href="<?= base_url('pages/verPatrocinio?id='.$user["patrocinio_id"])?>">
+                    <button >Ver participantes</button>
+                </a>
                 <hr>
 
             </div>
@@ -110,9 +113,9 @@ chart.render();
         <br>
 
     </div>
-    <div  class="row pt-5 padding-left-10">
+    <div  class="row padding-left-10 p-5">
         <a href="<?= base_url('pages/patrocinio')?>">
-            <button>Adicionar</button>
+            <button >Adicionar patrocinio</button>
         </a>
     </div>
 </div>
