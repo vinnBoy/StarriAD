@@ -248,8 +248,8 @@ require 'assets/vendor/autoload.php';
                                     $mail->Port = 587;                                    // TCP port to connect to
 
                                     //Recipients
-                                    $mail->setFrom('starriad2019@gmail.com', 'StarriAD');
-                                    $mail->addAddress('starriad2019@gmail.com', 'starriad2019@gmail.com');     // Add a recipient
+                                    $mail->setFrom('starriad.contato@gmail.com', 'StarriAD');
+                                    $mail->addAddress('starriad.contato@gmail.com', 'starriad.contato@gmail.com');     // Add a recipient
 
 
                                     //Content
