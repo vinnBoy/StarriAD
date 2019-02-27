@@ -92,19 +92,30 @@ chart.render();
 
         <?php foreach ($users as $key=>$user) : ?>
             <div class="col-md-4 center-text padding-left-10 mt-6">
-                <h3>#<?=$key + 1?> </h3>
+                <img width="300" height="200" src="<?= base_url() .'uploads/'.$user['file']; ?>">
+
                 <h6>Nome</h6>
                 <label><?php echo $user['nome'];?></label>
-                <h6>Empresa</h6>
-                <label><?php echo $user['nome_empresa'];?></label>
-                <h6>Pontos</h6>
-                <label><?php echo $user['pontos'];?></label>
-                <h6>Email</h6>
-                <label><?php echo $user['email'];?></label>
+                <h6>Descrição</h6>
+                <label><?php echo $user['descricao'];?></label>
+                <h6>Data Inicio</h6>
+                <label><?php echo $user['data_inicio'];?></label>
+                <h6>Data encerramento</h6>
+                <label><?php echo $user['data_encerramento'];?></label>
                 <br>
+                <a href="<?= base_url('pages/verPatrocinio?id='.$user["patrocinio_id"])?>">
+                    <button >Ver participantes</button>
+                </a>
                 <hr>
 
             </div>
         <?php endforeach; ?>
+        <br>
+
+    </div>
+    <div  class="row padding-left-10 p-5">
+        <a href="<?= base_url('pages/patrocinio')?>">
+            <button >Adicionar patrocinio</button>
+        </a>
     </div>
 </div>

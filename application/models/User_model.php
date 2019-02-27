@@ -34,6 +34,28 @@
             return $this->db->insert('users', $data );
 
         }
+        public function participarPatrocinioModel($data){
+
+            // Insert User
+            return $this->db->insert('patrocinio_participantes', $data );
+
+        }
+        public function getParticipoModel($data){
+
+            $this->db->where("user_id",$data->user_id);
+            $this->db->where("patrocinio_id",$data->patrocinio_id);
+            return $this->db->get('patrocinio_participantes')->num_rows();
+
+        }
+
+
+        public function getPatrocinioModel(){
+            date_default_timezone_set('America/Sao_Paulo');
+            $date = date('Y-m-d');
+            $this->db->where("data_inicio <=", $date);
+            $this->db->where("data_encerramento >=", $date);
+            return $this->db->get("patrocinio")->result();
+        }
 
         public function atualizar_cadastro($email){
             $data = array(
@@ -130,6 +152,8 @@
             return $this->db->update("campanhas");
         }
 
+
+
         public function check_admin($email){
             $this->db->where('email',$email);
             $this->db->select('admin');
@@ -196,7 +220,14 @@
 
         }
 
-        public function getAllCuponsModel($id){
+        public function getAllCuponsModel(){
+            $this->db->select("cupom.id, cupom.valor, users.nome, cupom.codigo");
+            $this->db->where("empresa_id", $this->session->userdata('user_id'));
+            $this->db->from('cupom');
+            $this->db->join("users", "users.id = cupom.user_id");
+            return $this->db->get()->result();
+        }
+        public function getAllCuponsCampModel($id){
             $this->db->select("cupom.id, cupom.valor, users.nome, cupom.codigo");
             $this->db->where("empresa_id", $this->session->userdata('user_id'));
             $this->db->where("campanha_id",$id);

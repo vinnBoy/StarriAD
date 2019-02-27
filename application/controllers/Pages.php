@@ -99,7 +99,20 @@ require 'assets/vendor/autoload.php';
                 redirect('users/login');
             }
             $data['title'] = 'Cupons';
-            $data['cupons'] = $this->user_model->getAllCuponsModel($_GET["id"]);
+            $data['cupons'] = $this->user_model->getAllCuponsModel();
+
+//            var_dump($data["cupons"]);
+
+            $this->load->view('templates/header');
+            $this->load->view('pages/cupons', $data);
+            $this->load->view('templates/footer');
+        }
+        public function cuponsCamp(){
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            $data['title'] = 'Cupons';
+            $data['cupons'] = $this->user_model->getAllCuponsCampModel($_GET["id"]);
 
 //            var_dump($data["cupons"]);
 
@@ -117,6 +130,17 @@ require 'assets/vendor/autoload.php';
 
             $this->load->view('templates/header');
             $this->load->view('pages/termos', $data);
+            $this->load->view('templates/footer');
+        }
+
+        public function patrocinio(){
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            $data['title'] = 'Patrocinio';
+
+            $this->load->view('templates/header');
+            $this->load->view('pages/patrocinio', $data);
             $this->load->view('templates/footer');
         }
 
@@ -279,7 +303,71 @@ require 'assets/vendor/autoload.php';
            
         }
 
+        // Upload video
+        public function uploadPatrocinio(){
 
+            $allowedExts = array("jpeg", "JPEG","png", "PNG","gif","jpg");
+            $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+
+            if ((($_FILES["file"]["type"] == "image/jpeg")
+                    || ($_FILES["file"]["type"] == "image/JPEG")
+                    || ($_FILES["file"]["type"] == "image/jpg")
+                    || ($_FILES["file"]["type"] == "image/gif")
+                    || ($_FILES["file"]["type"] == "image/png")
+                    || ($_FILES["file"]["type"] == "image/PNG"))
+
+                && in_array($extension, $allowedExts))
+
+            {
+                if ($_FILES["file"]["error"] > 0)
+                {
+                    $this->session->set_flashdata('upload_error','Erro ao enviar. Por favor tente novamente.');
+                    redirect('pages/patrocinio');
+                }
+                else
+                {
+
+                    $unique_name = uniqid();
+
+                    $file = $_FILES['file'];
+                    $configuracao = array(
+                        'upload_path'   => './uploads/',
+                        'allowed_types' => array("jpeg","JPEG","png", "PNG","gif","jpg"),
+                        'file_name'     => $unique_name.'.jpg',
+                    );
+                    $this->load->library('upload');
+                    $this->upload->initialize($configuracao);
+
+                    if ($this->upload->do_upload('file')){
+
+                        $this->form_validation->set_rules('titulo','Título','required');
+
+                        // Converter Data
+                        $data_enc = $this->input->post('data_encerramento');
+                        $date = str_replace('/', '-', $data_enc);
+                        $data_encerramento = date('Y-m-d', strtotime($date));
+
+                        // Converter Data
+                        $data_inicio = $this->input->post('data_inicio');
+                        $date = str_replace('/', '-', $data_inicio);
+                        $data_inicio = date('Y-m-d', strtotime($date));
+
+                        $this->upload_model->create_patricio($data_encerramento,$data_inicio, $unique_name.'.jpg');
+                        redirect('pages/campanhas');
+
+                    }
+                    else {
+                        $this->session->set_flashdata('upload_error', $this->upload->display_errors());
+                        echo $this->upload->display_errors();
+                    }
+                }
+            }
+            else
+            {
+                $this->session->set_flashdata('invalid_file','Arquivo não selecionado ou inválido.');
+                redirect('pages/home');
+            }
+        }
         
         public function delete($id){
             // Check login
@@ -299,6 +387,19 @@ require 'assets/vendor/autoload.php';
             
 
         }
+
+        public function verPatrocinio(){
+
+
+            $data["title"] = "Participantes";
+            $data["patrocinios"] = $this->upload_model->get_ranking_user_web($_GET['id']);
+
+            $this->load->view('templates/header');
+            $this->load->view('pages/participantes',$data);
+            $this->load->view('templates/footer');
+
+        }
+
         public function editarCampanha(){
 
             // Check login
