@@ -263,9 +263,9 @@
 
             $data = json_decode(file_get_contents("php://input"));
 
-            include(base_url().'assets/PHPMailer/src/Exception.php');
-            include(base_url().'assets/PHPMailer/src/PHPMailer.php');
-            include(base_url().'assets/PHPMailer/src/SMTP.php');
+            include('assets/PHPMailer/src/Exception.php');
+            include('assets/PHPMailer/src/PHPMailer.php');
+            include('assets/PHPMailer/src/SMTP.php');
 
             $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
             try {
@@ -304,9 +304,9 @@
 
             $data = json_decode(file_get_contents("php://input"));
 
-            include(base_url().'assets/PHPMailer/src/Exception.php');
-            include(base_url().'assets/PHPMailer/src/PHPMailer.php');
-            include(base_url().'assets/PHPMailer/src/SMTP.php');
+            include('assets/PHPMailer/src/Exception.php');
+            include('assets/PHPMailer/src/PHPMailer.php');
+            include('assets/PHPMailer/src/SMTP.php');
 
             $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
             try {
