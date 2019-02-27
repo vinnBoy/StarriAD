@@ -271,6 +271,7 @@
 
 
 
+
             $mail = new PHPMailer\PHPMailer\PHPMailer();                              // Passing `true` enables exceptions
             try {
                 //Server settings
@@ -310,9 +311,12 @@
 
             $data = json_decode(file_get_contents("php://input"));
 
+
             include(FCPATH.'assets/PHPMailer/src/Exception.php');
             include(FCPATH.'assets/PHPMailer/src/PHPMailer.php');
             include(FCPATH.'assets/PHPMailer/src/SMTP.php');
+
+
 
             $mail = new PHPMailer\PHPMailer\PHPMailer();                            // Passing `true` enables exceptions
             try {
