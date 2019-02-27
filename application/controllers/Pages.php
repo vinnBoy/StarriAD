@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require 'assets/vendor/autoload.php';
@@ -99,7 +99,20 @@ require 'assets/vendor/autoload.php';
                 redirect('users/login');
             }
             $data['title'] = 'Cupons';
-            $data['cupons'] = $this->user_model->getAllCuponsModel($_GET["id"]);
+            $data['cupons'] = $this->user_model->getAllCuponsModel();
+
+//            var_dump($data["cupons"]);
+
+            $this->load->view('templates/header');
+            $this->load->view('pages/cupons', $data);
+            $this->load->view('templates/footer');
+        }
+        public function cuponsCamp(){
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            $data['title'] = 'Cupons';
+            $data['cupons'] = $this->user_model->getAllCuponsCampModel($_GET["id"]);
 
 //            var_dump($data["cupons"]);
 
