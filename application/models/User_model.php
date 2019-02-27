@@ -31,7 +31,10 @@
             );
 
             // Insert User
-            return $this->db->insert('users', $data );
+             $this->db->insert('users', $data);
+
+             $this->db->where("id", $this->db->insert_id());
+             return $this->db->get("users")->result();
 
         }
         public function participarPatrocinioModel($data){
@@ -244,7 +247,12 @@
             $this->db->where("id", $data->id);
             $this->db->update("cupom");
 
-            return $id;
+            $response["codigo"] = $id;
+
+            $this->db->where("id", $data->id);
+            $response["id"] = $this->db->get("cupom")->result()[0]->user_id;
+
+            return $response;
 
         }
         public function set_destaqueModel($data){

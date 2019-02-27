@@ -12,7 +12,7 @@
                 <label><?php echo $key + 1;?></label>
                 <h6>Usuário</h6>
                 <label><?php echo $value['nome'];?></label>
-                <h6>Nome da campanha</h6>
+                <h6>pontos</h6>
                 <label><?php echo $value['pontos'];?></label>
 
                 <hr>
