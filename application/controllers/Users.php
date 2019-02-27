@@ -35,7 +35,7 @@
 
             $data = json_decode(file_get_contents("php://input"));
             $data->senha = md5($data->senha);
-            return $this->user_model->cadastrarApp($data);
+            echo json_encode($this->user_model->cadastrarApp($data));
         }
 
         public function getPatrocinio(){

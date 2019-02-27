@@ -31,7 +31,10 @@
             );
 
             // Insert User
-            return $this->db->insert('users', $data );
+             $this->db->insert('users', $data);
+
+             $this->db->where("id", $this->db->insert_id());
+             return $this->db->get("users")->result();
 
         }
         public function participarPatrocinioModel($data){
