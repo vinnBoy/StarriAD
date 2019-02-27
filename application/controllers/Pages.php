@@ -232,11 +232,11 @@ require 'assets/vendor/autoload.php';
 
                                 $this->session->set_flashdata('upload_success','Arquivo enviado com sucesso. ');
 
-                                include ('PHPMailer/src/Exception.php');
-                                include ('PHPMailer/src/PHPMailer.php');
-                                include ('PHPMailer/src/SMTP.php');
+                                include(FCPATH.'assets/PHPMailer/src/Exception.php');
+                                include(FCPATH.'assets/PHPMailer/src/PHPMailer.php');
+                                include(FCPATH.'assets/PHPMailer/src/SMTP.php');
 
-                                $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+                                $mail = new PHPMailer\PHPMailer\PHPMailer();                            // Passing `true` enables exceptions
                                 try {
                                     //Server settings
                                     $mail->isSMTP();                                      // Set mailer to use SMTP

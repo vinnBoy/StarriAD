@@ -1,6 +1,6 @@
 <?php 
     class Users extends CI_Controller{
-        
+
         public function cadastrar(){
             if($this->session->userdata('logged_in')){
                 redirect('pages/home');
@@ -261,13 +261,17 @@
         {
             $this->load->model("upload_model");
 
+            require_once 'vendor/autoload.php';
+
             $data = json_decode(file_get_contents("php://input"));
 
-            include('PHPMailer/src/Exception.php');
-            include('PHPMailer/src/PHPMailer.php');
-            include('PHPMailer/src/SMTP.php');
+            include(FCPATH.'assets/PHPMailer/src/Exception.php');
+            include(FCPATH.'assets/PHPMailer/src/PHPMailer.php');
+            include(FCPATH.'assets/PHPMailer/src/SMTP.php');
 
-            $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+
+
+            $mail = new PHPMailer\PHPMailer\PHPMailer();                              // Passing `true` enables exceptions
             try {
                 //Server settings
                 $mail->isSMTP();                                      // Set mailer to use SMTP
@@ -302,13 +306,15 @@
         {
             $this->load->model("upload_model");
 
+            require_once 'vendor/autoload.php';
+
             $data = json_decode(file_get_contents("php://input"));
 
-            include('PHPMailer/src/Exception.php');
-            include('PHPMailer/src/PHPMailer.php');
-            include('/HPMailer/src/SMTP.php');
+            include(FCPATH.'assets/PHPMailer/src/Exception.php');
+            include(FCPATH.'assets/PHPMailer/src/PHPMailer.php');
+            include(FCPATH.'assets/PHPMailer/src/SMTP.php');
 
-            $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+            $mail = new PHPMailer\PHPMailer\PHPMailer();                            // Passing `true` enables exceptions
             try {
                 //Server settings
                 $mail->isSMTP();                                      // Set mailer to use SMTP
