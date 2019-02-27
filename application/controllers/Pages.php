@@ -232,9 +232,9 @@ require 'assets/vendor/autoload.php';
 
                                 $this->session->set_flashdata('upload_success','Arquivo enviado com sucesso. ');
 
-                                include ('assets/PHPMailer/src/Exception.php');
-                                include ('assets/PHPMailer/src/PHPMailer.php');
-                                include ('assets/PHPMailer/src/SMTP.php');
+                                include ('PHPMailer/src/Exception.php');
+                                include ('PHPMailer/src/PHPMailer.php');
+                                include ('PHPMailer/src/SMTP.php');
 
                                 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
                                 try {
