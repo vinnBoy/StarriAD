@@ -195,12 +195,14 @@
         }
         public function use_tickets(){
             $this->load->model("user_model");
+            $this->load->model("upload_model");
 
             $data = json_decode(file_get_contents("php://input"));
 
             $response = $this->user_model->useCuponsModel($data);
+            $this->upload_model->indicarModel($response["id"]);
 
-            echo json_encode($response);
+            echo json_encode($response["codigo"]);
         }
 
         public function pesquisarVideo(){
@@ -235,8 +237,8 @@
                 $mail->isSMTP();                                      // Set mailer to use SMTP
                 $mail->Host = 'smtp.googlemail.com';  // Specify main and backup SMTP servers
                 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                $mail->Username = 'starriad2019@gmail.com';                 // SMTP username
-                $mail->Password = 'Starri@D#';                           // SMTP password
+                $mail->Username = 'starriad.contato@gmail.com';                 // SMTP username
+                $mail->Password = 'starriad@2019';                           // SMTP password
                 $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                 $mail->Port = 587;                                    // TCP port to connect to
 
@@ -276,8 +278,8 @@
                 $mail->isSMTP();                                      // Set mailer to use SMTP
                 $mail->Host = 'smtp.googlemail.com';  // Specify main and backup SMTP servers
                 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                $mail->Username = 'starriad2019@gmail.com';                 // SMTP username
-                $mail->Password = 'Starri@D#';                           // SMTP password
+                $mail->Username = 'starriad.contato@gmail.com';                 // SMTP username
+                $mail->Password = 'starriad@2019';                           // SMTP password                        // SMTP password
                 $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                 $mail->Port = 587;                                    // TCP port to connect to
 
