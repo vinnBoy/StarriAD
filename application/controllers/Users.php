@@ -57,11 +57,10 @@
 
             $data = json_decode(file_get_contents("php://input"));
 
-
-
             $response['user'] = $this->upload_model->get_data_user($data)[0];
-            $response['ranking'] = $this->upload_model->get_ranking_user($data);
-
+            if(isset($data->patrocinio_id) && $data->patrocinio_id !== null && $data->patrocinio_id !== "undefined") {
+                $response['ranking'] = $this->upload_model->get_ranking_user($data);
+            }
             echo json_encode($response);
 
         }
